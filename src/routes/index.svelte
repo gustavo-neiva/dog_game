@@ -1,2 +1,17 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import Button from "../components/button.svelte";
+</script>
+
+<svelte:head>
+	<title>Qaul é a raça?</title>
+</svelte:head>
+<main>
+	<h1>Adivinhe a raça</h1>
+	<Button href={'/play'} text="Jogar"/>
+</main>
+
+<style>
+	h1 {
+		font-size: 6rem;
+	}
+</style>
