@@ -1,7 +1,5 @@
 <script>
 	import Button from "../components/button.svelte";
-  import { buildQuiz } from '../store'
-	buildQuiz()
 </script>
 
 <svelte:head>

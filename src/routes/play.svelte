@@ -1,10 +1,11 @@
 <script>
-  import { quiz } from '../store'
+  import { buildQuiz, quiz} from '../store'
+  import Question from '../components/question.svelte';
+	buildQuiz()
   console.log($quiz)
 </script>
 
-<ul>
-  {#each $quiz as question}
-    <li>{question.question.breed}</li>
-  {/each}
-</ul>
+
+{#each $quiz as question}
+  <Question question={question}></Question>
+{/each}
