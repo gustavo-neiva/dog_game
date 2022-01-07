@@ -2,6 +2,7 @@ import { writable } from 'svelte/store';
 import { shuffle, unslugify } from './helpers';
 
 export const quiz = writable([]);
+export const quizIndex = writable(1);
 
 export const buildQuiz = async () => {
   const url = 'https://dog.ceo/api/breeds/image/random/50';
@@ -22,8 +23,7 @@ export const buildQuiz = async () => {
           return { index: index + 1, url }
         })
         const randomElement = images[Math.floor(Math.random() * images.length)];
-        const answerObj = { index: randomElement.index, breed: unslugify(randomElement.url.split('/')[4]) }
-        const question = { question: answerObj, images, index: questionIndex }
+        const question = { answer: randomElement.index, breed: unslugify(randomElement.url.split('/')[4]), images, index: questionIndex }
         questions.push(question)
         questionIndex += 1
       }
