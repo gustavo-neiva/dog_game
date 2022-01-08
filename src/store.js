@@ -15,15 +15,17 @@ export const buildQuiz = async () => {
       const { message }  = await response.json();
       const images = message;
       let questionIndex = 0;
+      let imageIndex = 0;
       const questions = [];
       const shuffledImages = shuffle(images);
       while (questionIndex < numberOfQuestions) {
         const imagesSelection = shuffledImages.splice(0, numberOfOptions);
-        const images = imagesSelection.map((url, index) => {
-          return { index: index + 1, url }
+        const images = imagesSelection.map((url) => {
+          imageIndex += 1
+          return { id: imageIndex, url }
         })
         const randomElement = images[Math.floor(Math.random() * images.length)];
-        const question = { answer: randomElement.index, breed: unslugify(randomElement.url.split('/')[4]), images, index: questionIndex }
+        const question = { answer: randomElement.id, breed: unslugify(randomElement.url.split('/')[4]), images, index: questionIndex + 1}
         questions.push(question)
         questionIndex += 1
       }
