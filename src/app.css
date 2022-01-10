@@ -1,3 +1,4 @@
+/* Write your global styles here, in PostCSS syntax */
 *,
 *::after,
 *::before {
@@ -24,4 +25,5 @@ body {
 
 a {
   text-decoration: none;
+  color: brown;
 }
