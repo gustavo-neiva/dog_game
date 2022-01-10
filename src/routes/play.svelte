@@ -1,11 +1,15 @@
 <script>
-  import { buildQuiz, quiz } from '../store'
-  import Question from '../components/question.svelte';
-	buildQuiz()
-  console.log($quiz)
+  import { startGame, quiz, finished } from '../store'
+  import Question from '../components/Question.svelte';
+  import Result from '../components/Result.svelte';
+
+	startGame()
 </script>
 
-
-{#each $quiz as question}
-  <Question {...question}/>
-{/each}
+{#if $finished}
+  <Result/>
+{:else}
+  {#each $quiz as question}
+    <Question {...question}/>
+  {/each}
+{/if}

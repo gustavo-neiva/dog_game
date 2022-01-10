@@ -2,16 +2,18 @@ import { writable } from 'svelte/store';
 import { shuffle, unslugify } from './helpers';
 
 export const quiz = writable([]);
-export const quizIndex = writable(1);
+export const answers = writable([]);
+export const quizIndex = writable(0);
+export const finished = writable(false);
+export const numberOfQuestions = 12
 
-export const buildQuiz = async () => {
+const buildQuiz = async () => {
+  const numberOfOptions = 4
   const url = 'https://dog.ceo/api/breeds/image/random/50';
   try {
     // fetch user profile
     const response = await fetch(url);
     if (response.ok) {
-      const numberOfQuestions = 12
-      const numberOfOptions = 4
       const { message }  = await response.json();
       const images = message;
       let questionIndex = 0;
@@ -25,7 +27,7 @@ export const buildQuiz = async () => {
           return { id: imageIndex, url }
         })
         const randomElement = images[Math.floor(Math.random() * images.length)];
-        const question = { answer: randomElement.id, breed: unslugify(randomElement.url.split('/')[4]), images, index: questionIndex + 1}
+        const question = { answer: randomElement.id, breed: unslugify(randomElement.url.split('/')[4]), images, index: questionIndex }
         questions.push(question)
         questionIndex += 1
       }
@@ -34,4 +36,8 @@ export const buildQuiz = async () => {
   } catch (error) {
     console.error(error)
   }
+}
+
+export const startGame = () => {
+  buildQuiz()
 }

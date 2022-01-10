@@ -1,24 +1,27 @@
-
 <script>
-	import Nav from "../components/nav.svelte";
-	import Footer from "../components/footer.svelte";
+	import '../app.css';
+	import Nav from '../components/Nav.svelte';
+	import Footer from '../components/Footer.svelte';
 </script>
 
-<div class="container">
+<div class="game">
 	<Nav/>
-	<div class="content">
-		<slot></slot>
-	</div>
-	<Footer/>
+		<div class="content">
+			<slot />
+		</div>
+	<Footer />
 </div>
 
 <style>
-	.container {
-		background-color: #CA965C;
+	.game {
+		background-color: #ca965c;
+		min-height: 97vh;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.content {
 		max-width: 100%;
-		height: 100vh;
+		height: 100%;
 	}
 </style>
