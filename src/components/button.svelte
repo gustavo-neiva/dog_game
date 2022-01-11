@@ -53,6 +53,7 @@
 
   .disabled {
     pointer-events: none;
-    opacity: 0.7;
+    opacity: 0.5;
+    transform: scale(0.9);
   }
 </style>

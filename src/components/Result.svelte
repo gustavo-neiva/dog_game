@@ -1,6 +1,17 @@
 <script>
-  import { answers, numberOfQuestions } from '../store'
+  import { goto } from '$app/navigation';
+  import { answers, numberOfQuestions, quiz, finished, quizIndex, startGame} from '../store'
   const correct = $answers.filter(Boolean).length;
+	import Button from "./Button.svelte";
+
+  const reset = () => {
+    $quiz = [];
+    $answers = [];
+    quizIndex.set(0)
+    finished.set(false)
+    startGame()
+    goto('/play')
+  }
 </script>
 
 <div class="score">
@@ -13,6 +24,8 @@
       <li>{answer}</li>
     {/each}
   </ul>
+
+  <Button text="Restart" href='' on:click={reset} />
 </div>
 
 <style>

@@ -5,7 +5,7 @@ export const quiz = writable([]);
 export const answers = writable([]);
 export const quizIndex = writable(0);
 export const finished = writable(false);
-export const numberOfQuestions = 12
+export const numberOfQuestions = 3 //max is 12
 
 const buildQuiz = async () => {
   const numberOfOptions = 4

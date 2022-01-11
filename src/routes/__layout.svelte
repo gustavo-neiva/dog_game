@@ -14,7 +14,12 @@
 
 <style>
 	.game {
-		background-color: #ca965c;
+		background-image:
+			linear-gradient(
+				rgba(0, 0, 0, 0.1),
+				rgba(0, 0, 0, 0.1)
+			),
+			url('./static/dogs.jpeg');
 		min-height: 97vh;
 		display: flex;
 		flex-direction: column;

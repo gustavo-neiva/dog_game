@@ -28,25 +28,23 @@
     src="{base64}"
     id={id}
     alt="Dog to choose"
-    class="dog-option"
+    class="dog-img"
     on:click
     class:selected
   >
 {/await}
 <style>
-  .dog-option {
+  .dog-img {
     cursor: pointer;
-    border-radius: 8%;
     object-fit: cover;
     width: 100%;
     height: 100%;
     transition: all .2s;
+    border: 1px solid #ccc;
   }
 
-  .dog-option:hover:not(.selected) {
-    border: 0.3rem solid brown;
-    filter: drop-shadow(0 0 2rem brown);
-    border-radius: 8%;
+  .dog-img:hover:not(.selected) {
+    transform: scale(1.03, 1.01) translateY(3px);
   }
 
   .selected {

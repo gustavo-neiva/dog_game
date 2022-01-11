@@ -41,6 +41,9 @@
   h2 {
 		font-size: 4.8rem;
 		text-align: center;
+    border: 3px solid black;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+    color: white;
 	}
 
   .container  {
@@ -59,7 +62,7 @@
 
   .image {
     text-align: center;
-    padding: 3rem;
+    margin: 2rem;
     width: 50vh;
     height: 50vh;
   }

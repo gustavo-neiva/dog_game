@@ -29,14 +29,13 @@
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		width: 50vh;
-		height: 50vh;
+		width: 25vh;
+		height: 25vh;
 		cursor: pointer;
     transition: all .2s;
 
 		&:hover {
-			transform: translate(-50%, -50%) scale(1.12);
-			filter: drop-shadow(0 0 2rem #E6E6FA);
+			transform: translate(-50%, -50%) scale(1.03);
 			&::after {
 				position: absolute;
 				bottom: 0;
