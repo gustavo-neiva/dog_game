@@ -1,5 +1,6 @@
 <script>
   import { goto } from '$app/navigation';
+  import LottiePlayer from './LottiePlayer.svelte'
   import { answers, numberOfQuestions, quiz, finished, quizIndex, startGame} from '../store'
   const correct = $answers.filter(Boolean).length;
 	import Button from "./Button.svelte";
@@ -18,6 +19,9 @@
   <h2>
     You got {correct} out of {numberOfQuestions} correct! Are you a dog whisperer?
   </h2>
+
+  <LottiePlayer path={'./static/wrong.json'} height={300} width={300}/>
+  <LottiePlayer path={'./static/correct.json'} height={600} width={600}/>
 
   <ul>
     {#each $answers as answer}

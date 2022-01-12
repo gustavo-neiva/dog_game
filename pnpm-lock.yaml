@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@lottiefiles/svelte-lottie-player': ^0.2.0
   '@sveltejs/adapter-auto': next
   '@sveltejs/kit': next
   autoprefixer: ^10.4.2
@@ -19,11 +20,12 @@ specifiers:
   svelte-preprocess: ^4.10.1
 
 dependencies:
+  '@lottiefiles/svelte-lottie-player': 0.2.0
   postcss-scss: 4.0.2_postcss@8.4.5
 
 devDependencies:
   '@sveltejs/adapter-auto': 1.0.0-next.10
-  '@sveltejs/kit': 1.0.0-next.218_svelte@3.44.3
+  '@sveltejs/kit': 1.0.0-next.225_svelte@3.44.3
   autoprefixer: 10.4.2_postcss@8.4.5
   eslint: 7.32.0
   eslint-config-prettier: 8.3.0_eslint@7.32.0
@@ -96,6 +98,12 @@ packages:
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
     dev: true
 
+  /@lottiefiles/svelte-lottie-player/0.2.0:
+    resolution: {integrity: sha512-sV8YkO8hCDGq67LCCqjT+JW6cAbVCIw9wtgrOWz+Ao6Q8cD7ZvdsCiipSIMIH55Ja6MWwEXP4N4nKD+jL3XQLg==}
+    dependencies:
+      lottie-web: 5.8.1
+    dev: false
+
   /@rollup/pluginutils/4.1.2:
     resolution: {integrity: sha512-ROn4qvkxP9SyPeHaf7uQC/GPFY6L/OWy9+bd9AwcjOAWQwxRscoEyAUD8qCY5o5iL4jqQwoLk2kaTKJPb/HwzQ==}
     engines: {node: '>= 8.0.0'}
@@ -132,8 +140,8 @@ packages:
       esbuild: 0.13.15
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.218_svelte@3.44.3:
-    resolution: {integrity: sha512-reimVgWaFq0qIvxkKnWE4nq35JFd6yQ6Lkge+o3WkX3hV8CAtrLbSAzFaEIUu5Ph09gJkl2PnqQa32WVDaeBZg==}
+  /@sveltejs/kit/1.0.0-next.225_svelte@3.44.3:
+    resolution: {integrity: sha512-J/f+FZVdvpTmn7nCeRKRC1L9gbcI7g1bJRaw+jMdq/MYtGqcRw/fjYrx9/xO3+1YH0wgNG1b26GwmQZE64PFIQ==}
     engines: {node: '>=14.13'}
     hasBin: true
     peerDependencies:
@@ -942,6 +950,10 @@ packages:
   /lodash.truncate/4.4.2:
     resolution: {integrity: sha1-WjUNoLERO4N+z//VgSy+WNbq4ZM=}
     dev: true
+
+  /lottie-web/5.8.1:
+    resolution: {integrity: sha512-9gIizWADlaHC2GCt+D+yNpk5l2clZQFqnVWWIVdY0LnxC/uLa39dYltAe3fcmC/hrZ2IUQ8dLlY0O934Npjs7Q==}
+    dev: false
 
   /lru-cache/6.0.0:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}

@@ -1,5 +1,5 @@
 <script>
-	import InlineSVG from 'svelte-inline-svg'
+  import LottiePlayer from './LottiePlayer.svelte'
 
   export let id
   export let url
@@ -22,7 +22,7 @@
 </script>
 
 {#await preload(url)}
-  <InlineSVG src={'./loading.svg'} />
+  <LottiePlayer path={'./static/dog-walking.json'} height={400} width={400} speed={1}/>
 {:then base64}
   <img
     src="{base64}"

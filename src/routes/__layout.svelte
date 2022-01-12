@@ -5,21 +5,15 @@
 </script>
 
 <div class="game">
-	<Nav/>
+	<!-- <Nav/> -->
 		<div class="content">
 			<slot />
 		</div>
-	<Footer />
+	<!-- <Footer /> -->
 </div>
 
 <style>
 	.game {
-		background-image:
-			linear-gradient(
-				rgba(0, 0, 0, 0.1),
-				rgba(0, 0, 0, 0.1)
-			),
-			url('./static/dogs.jpeg');
 		min-height: 97vh;
 		display: flex;
 		flex-direction: column;

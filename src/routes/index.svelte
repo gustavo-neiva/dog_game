@@ -12,30 +12,55 @@
 </svelte:head>
 
 <main>
-	<h1>Guess the breed</h1>
-	<div class="icon" on:click={() => startGame()}>
-		<InlineSVG src={'./icon.svg'} />
+	<div class="left">
+		<h1>Guess the breed</h1>
+		<div class="icon" on:click={() => startGame()}>
+			<InlineSVG src={'./icon.svg'} />
+		</div>
+	</div>
+	<div class="right">
 	</div>
 </main>
 
 <style lang="postcss">
+	main {
+		display: flex;
+		flex-direction: row;
+	}
 	h1 {
 		font-size: 6rem;
 		text-align: center;
+		-webkit-text-stroke-color: black;
+		-webkit-text-stroke-width: 1px;
+	}
+
+	.left {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+	}
+	.right {
+		width: 70%;
+		background-image:
+			linear-gradient(
+				rgba(0, 0, 0, 0.1),
+				rgba(0, 0, 0, 0.1)
+			),
+			url('./static/dogs.jpeg');
+			min-height: 100vh;
 	}
 
 	.icon {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		width: 25vh;
-		height: 25vh;
+		margin-top: 12rem;
+		min-width: 25vh;
+		min-height: 25vh;
 		cursor: pointer;
     transition: all .2s;
 
 		&:hover {
-			transform: translate(-50%, -50%) scale(1.03);
+			transform: scale(1.03);
 			&::after {
 				position: absolute;
 				bottom: 0;
@@ -49,7 +74,7 @@
 		}
 
 		&:active {
-			transform: translate(-50%, -50%) translateY(-1px);
+			transform: translateY(-1px);
 		}
 	}
 </style>
