@@ -5,14 +5,11 @@
   export let url
   export let selected
 
-  let image = null;
-	$: image;
-
   const preload = async (src) => {
     const resp = await fetch(src);
 		const blob = await resp.blob();
 
-		return new Promise(function (resolve) {
+		return new Promise((resolve) =>{
 			let reader = new FileReader();
 			reader.readAsDataURL(blob);
 			reader.onload = () => resolve(reader.result);
@@ -22,7 +19,9 @@
 </script>
 
 {#await preload(url)}
-  <LottiePlayer path={'./static/dog-walking.json'} height={400} width={400} speed={1}/>
+  <div class="loading">
+    <LottiePlayer path={'./dog-walking.json'} height={300} width={300}/>
+  </div>
 {:then base64}
   <img
     src="{base64}"
@@ -45,10 +44,12 @@
 
   .dog-img:hover:not(.selected) {
     transform: scale(1.03, 1.01) translateY(3px);
+    border: 0.2rem solid tan;
+    filter: drop-shadow(0 0 3rem tan);
   }
 
   .selected {
-    border: 0.3rem solid gold;
+    border: 0.2rem solid gold;
     filter: drop-shadow(0 0 2rem gold);
   }
 </style>

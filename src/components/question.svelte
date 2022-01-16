@@ -1,7 +1,8 @@
 <script>
-  import Img from './DogImg.svelte';
+  import LottiePlayer from './LottiePlayer.svelte'
+  import DogImg from './DogImg.svelte';
 	import Button from "./Button.svelte";
-  import { quizIndex, answers, numberOfQuestions, finished } from '../store'
+  import { quizIndex, answers, numberOfQuestions, finished, } from '../store'
 
   export let index;
   export let images;
@@ -10,7 +11,7 @@
 
   let selectedImg = 0;
 
-  function onSubmit() {
+  const onSubmit = () => {
     $answers = [...$answers, selectedImg === answer];
     quizIndex.update(n => n + 1)
     if($quizIndex == numberOfQuestions) {
@@ -20,22 +21,22 @@
 </script>
 
 {#if $quizIndex == index}
-  <h2>Which dog is the {breed}?</h2>
-  <div class="container">
-    {#each images as image(image.id)}
-      <div class="image">
-        <Img
-          url={image.url}
-          id={image.id}
-          on:click="{_ => selectedImg = image.id}"
-          selected="{selectedImg === image.id}"
-        />
-      </div>
-    {/each}
-  </div>
-  <div class="button">
-    <Button text="Select Dog" href='' on:click={onSubmit} disabled={selectedImg === 0}/>
-  </div>
+    <h2>Which dog is the {breed}?</h2>
+    <div class="container">
+      {#each images as image(image.id)}
+        <div class="image">
+          <DogImg
+            url={image.url}
+            id={image.id}
+            on:click="{_ => selectedImg = image.id}"
+            selected="{selectedImg === image.id}"
+          />
+        </div>
+      {/each}
+    </div>
+    <div class="button">
+      <Button text="Select Dog" href='' on:click={onSubmit} disabled={selectedImg === 0}/>
+    </div>
 {/if}
 <style>
   h2 {

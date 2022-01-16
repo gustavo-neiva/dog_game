@@ -15,4 +15,5 @@
   background="transparent"
   height="{height}"
   width="{width}"
+  controlsLayout="{{}}"
 />
