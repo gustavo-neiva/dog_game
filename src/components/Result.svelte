@@ -1,7 +1,13 @@
+<style>
+  li {
+    font-size: 3rem;
+  }
+</style>
+
 <script>
   import { goto } from '$app/navigation';
-  import LottiePlayer from './LottiePlayer.svelte'
-  import { answers, numberOfQuestions, quiz, finished, quizIndex, startGame} from '../store'
+  import LottiePlayer from './LottiePlayer.svelte';
+  import { answers, numberOfQuestions, quiz, finished, quizIndex, startGame} from '../store';
   const correct = $answers.filter(Boolean).length;
 	import Button from "./Button.svelte";
 
@@ -30,9 +36,3 @@
 
   <Button text="Restart" href='' on:click={reset} />
 </div>
-
-<style>
-  li {
-    font-size: 3rem;
-  }
-</style>

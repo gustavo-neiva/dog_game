@@ -1,27 +1,3 @@
-<script>
-	import InlineSVG from 'svelte-inline-svg'
-	import { goto } from '$app/navigation';
-
-	const startGame = () => {
-		goto('/play')
-	}
-</script>
-
-<svelte:head>
-	<title>Guess the breed</title>
-</svelte:head>
-
-<main>
-	<div class="left">
-		<h1>Guess the breed</h1>
-		<div class="icon" on:click={() => startGame()}>
-			<InlineSVG src={'./icon.svg'} />
-		</div>
-	</div>
-	<div class="right">
-	</div>
-</main>
-
 <style lang="postcss">
 	main {
 		display: flex;
@@ -48,7 +24,7 @@
 				rgba(0, 0, 0, 0.1),
 				rgba(0, 0, 0, 0.1)
 			),
-			url('./static/dogs.jpeg');
+			url('./dogs.jpeg');
 			min-height: 100vh;
 	}
 
@@ -57,7 +33,7 @@
 		min-width: 25vh;
 		min-height: 25vh;
 		cursor: pointer;
-    transition: all .2s;
+    	transition: all .2s;
 
 		&:hover {
 			transform: scale(1.03);
@@ -78,3 +54,27 @@
 		}
 	}
 </style>
+
+<script>
+	import InlineSVG from 'svelte-inline-svg';
+	import { goto } from '$app/navigation';
+
+	const startGame = () => {
+		goto('/play')
+	}
+</script>
+
+<svelte:head>
+	<title>Guess the breed</title>
+</svelte:head>
+
+<main>
+	<div class="left">
+		<h1>Guess the breed</h1>
+		<div class="icon" on:click={() => startGame()}>
+			<InlineSVG src={'./icon.svg'} />
+		</div>
+	</div>
+	<div class="right">
+	</div>
+</main>

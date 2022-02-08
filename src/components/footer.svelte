@@ -1,5 +1,5 @@
 <footer>
-  <!-- <p>Footer made with love!</p> -->
+  <p>Footer made with love!</p>
 </footer>
 
 <style>

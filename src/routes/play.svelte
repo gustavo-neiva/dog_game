@@ -1,7 +1,7 @@
 <script>
   import { startGame, quiz, finished } from '../store'
-  import Question from '../components/Question.svelte';
-  import Result from '../components/Result.svelte';
+  import Question from '../components/question.svelte';
+  import Result from '../components/result.svelte';
 	startGame()
 </script>
 

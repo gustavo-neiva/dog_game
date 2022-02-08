@@ -1,8 +1,46 @@
+<style lang="postcss">
+  h2 {
+		font-size: 4.8rem;
+		text-align: center;
+    border: 3px solid black;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+    color: white;
+    border-radius: 5rem;
+    width: 100rem;
+    margin: auto;
+	}
+
+  .container  {
+		display: grid;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    
+    @media (max-width: 64rem)  {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 64rem)  {
+      grid-template-columns: 33% 33%;
+    }
+	}
+
+  .image {
+    text-align: center;
+    margin: 2rem;
+    width: 50vh;
+    height: 50vh;
+  }
+
+  .button {
+    text-align: center;
+  }
+</style>
+
 <script>
-  import LottiePlayer from './LottiePlayer.svelte'
   import DogImg from './DogImg.svelte';
-	import Button from "./Button.svelte";
-  import { quizIndex, answers, numberOfQuestions, finished, } from '../store'
+	import Button from './Button.svelte';
+  import { quizIndex, answers, numberOfQuestions, finished, } from '../store';
 
   export let index;
   export let images;
@@ -38,37 +76,3 @@
       <Button text="Select Dog" href='' on:click={onSubmit} disabled={selectedImg === 0}/>
     </div>
 {/if}
-<style>
-  h2 {
-		font-size: 4.8rem;
-		text-align: center;
-    border: 3px solid black;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
-    color: white;
-	}
-
-  .container  {
-		display: grid;
-    justify-items: center;
-    align-items: center;
-
-    @media (max-width: 64rem)  {
-      grid-template-columns: 1fr;
-    }
-
-    @media (min-width: 64rem)  {
-      grid-template-columns: 1fr 1fr;
-    }
-	}
-
-  .image {
-    text-align: center;
-    margin: 2rem;
-    width: 50vh;
-    height: 50vh;
-  }
-
-  .button {
-    text-align: center;
-  }
-</style>
