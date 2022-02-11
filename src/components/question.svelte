@@ -38,7 +38,7 @@
 <script>
   import DogImg from './DogImg.svelte';
 	import Button from './Button.svelte';
-  import { quizIndex, answers, numberOfQuestions, finished, } from '../store';
+  import { quizIndex, answers, numberOfQuestions, finished } from '../store';
 
   export let index;
   export let images;
@@ -50,6 +50,7 @@
   const onSubmit = () => {
     $answers = [...$answers, selectedImg === answer];
     quizIndex.update(n => n + 1)
+    console.log(numberOfQuestions)
     if($quizIndex == numberOfQuestions) {
       finished.set(true)
     }

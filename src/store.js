@@ -11,15 +11,15 @@ export const numberOfQuestions = 3 //max is 12
 const buildQuiz = async () => {
   const numberOfOptions = 4
   const url = 'https://dog.ceo/api/breeds/image/random/50';
+  let questionIndex = 0;
+  let imageIndex = 0;
+  const questions = [];
+  
   try {
-    // fetch user profile
     const response = await fetch(url);
     if (response.ok) {
       const { message }  = await response.json();
       const images = message;
-      let questionIndex = 0;
-      let imageIndex = 0;
-      const questions = [];
       const shuffledImages = shuffle(images);
       while (questionIndex < numberOfQuestions) {
         const imagesSelection = shuffledImages.splice(0, numberOfOptions);
