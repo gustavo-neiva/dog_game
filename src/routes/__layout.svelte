@@ -17,6 +17,7 @@
 		min-height: 97vh;
 		display: flex;
 		flex-direction: column;
+		background-color: rgb(36, 36, 36);
 	}
 
 	.content {

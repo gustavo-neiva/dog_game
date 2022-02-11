@@ -2,10 +2,7 @@
   h2 {
 		font-size: 4.8rem;
 		text-align: center;
-    border: 3px solid black;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
     color: white;
-    border-radius: 5rem;
     width: 100rem;
     margin: auto;
 	}
@@ -21,15 +18,16 @@
     }
 
     @media (min-width: 64rem)  {
-      grid-template-columns: 33% 33%;
+      grid-template-columns: 25% 25%;
+      row-gap: 3rem;
     }
 	}
 
   .image {
     text-align: center;
     margin: 2rem;
-    width: 50vh;
-    height: 50vh;
+    width: 30rem;
+    height: 30rem;
   }
 
   .button {

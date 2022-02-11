@@ -5,18 +5,16 @@
     width: 100%;
     height: 100%;
     transition: all .2s;
-    border: 1px solid #ccc;
+    border-radius: 15px;
   }
 
   .dog-img:hover:not(.selected) {
     transform: scale(1.03, 1.01) translateY(3px);
-    border: 0.2rem solid tan;
-    filter: drop-shadow(0 0 3rem tan);
+    border: none;
   }
 
   .selected {
-    border: 0.2rem solid gold;
-    filter: drop-shadow(0 0 2rem gold);
+    border: 0.5rem solid gold;
   }
 </style>
 
