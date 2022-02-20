@@ -45,12 +45,12 @@
   export let breed;
   export let answer;
 
-  let selectedImg = 0;
+  $: selectedImg = 0;
+  $: show = selectedImg !== 0;
 
   const onSubmit = () => {
     $answers = [...$answers, selectedImg === answer];
     quizIndex.update(n => n + 1)
-    console.log(numberOfQuestions)
     if($quizIndex == numberOfQuestions) {
       finished.set(true)
     }
@@ -58,20 +58,22 @@
 </script>
 
 {#if $quizIndex == index}
-    <h2>Which dog is the {breed}?</h2>
-    <div class="container">
-      {#each images as image(image.id)}
-        <div class="image">
-          <DogImg
-            url={image.url}
-            id={image.id}
-            on:click="{_ => selectedImg = image.id}"
-            selected="{selectedImg === image.id}"
-          />
-        </div>
-      {/each}
-    </div>
+  <h2>Which dog is the {breed}?</h2>
+  {#if show}
     <div class="button">
-      <Button text="Select Dog" href='' on:click={onSubmit} disabled={selectedImg === 0}/>
+      <Button text="Select Dog" href='' on:click={onSubmit} />
     </div>
+  {/if}
+  <div class="container">
+    {#each images as image(image.id)}
+      <div class="image">
+        <DogImg
+          url={image.url}
+          id={image.id}
+          on:click="{_ => selectedImg = image.id}"
+          selected="{selectedImg === image.id}"
+        />
+      </div>
+    {/each}
+  </div>
 {/if}

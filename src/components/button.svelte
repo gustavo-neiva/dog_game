@@ -1,11 +1,10 @@
 <script>
-  export let href, text, disabled;
+  export let href, text;
 </script>
 
 <a
   href={href}
   on:click
-  class:disabled="{disabled}"
 >
   {text}
 </a>
@@ -49,11 +48,5 @@
     left: 0;
     z-index: -1;
     transition: all .4s;
-  }
-
-  .disabled {
-    pointer-events: none;
-    opacity: 0.5;
-    transform: scale(0.9);
   }
 </style>
