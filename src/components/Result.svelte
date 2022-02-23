@@ -30,7 +30,7 @@
 
   <ul>
     {#each $answers as answer}
-      <li>{answer}</li>
+      <li>{answer.correct}</li>
     {/each}
   </ul>
 

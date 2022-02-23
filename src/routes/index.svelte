@@ -33,7 +33,7 @@
 		min-width: 25vh;
 		min-height: 25vh;
 		cursor: pointer;
-    	transition: all .2s;
+		transition: all .2s;
 
 		&:hover {
 			transform: scale(1.03);

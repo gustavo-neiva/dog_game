@@ -15,16 +15,9 @@
   }
 </style>
 <script>
-  import { tweened } from 'svelte/motion';
-	import { cubicOut } from 'svelte/easing';
   import { quizIndex, numberOfQuestions } from '../store';
   $: totalProgress = $quizIndex/numberOfQuestions
-
-  $: progress = tweened(totalProgress, {
-		duration: 6000,
-		easing: cubicOut
-	});
 </script>
 
 <p><span>{$quizIndex}</span>/{numberOfQuestions}</p>
-<progress value={$progress}></progress>
+<progress value={totalProgress}></progress>

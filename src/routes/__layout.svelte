@@ -14,7 +14,6 @@
 
 <style>
 	.game {
-		min-height: 97vh;
 		display: flex;
 		flex-direction: column;
 	}

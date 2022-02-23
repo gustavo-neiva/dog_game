@@ -19,37 +19,45 @@
 
     @media (min-width: 64rem)  {
       grid-template-columns: 25% 25%;
-      row-gap: 3rem;
+      row-gap: 5rem;
     }
 	}
 
   .image {
     text-align: center;
     margin: 2rem;
-    width: 30rem;
-    height: 30rem;
+    height: max(calc(100vh/4), calc(100vw/4));
+    width: max(calc(100vh/4), calc(100vw/4));
   }
 
   .button {
     text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translateX(-50%);
   }
 </style>
 
 <script>
   import DogImg from './DogImg.svelte';
-	import Button from './Button.svelte';
+	import Option from './option.svelte';
+  import Button from './Button.svelte';
   import { quizIndex, answers, numberOfQuestions, finished } from '../store';
+  import { fade, fly } from 'svelte/transition';
 
   export let index;
-  export let images;
-  export let breed;
-  export let answer;
+  export let image;
+  export let options;
+  export let answered;
 
-  $: selectedImg = 0;
-  $: show = selectedImg !== 0;
+  
+  $: show = false;
+  $: selectedOption = { breed: null, correct: null };
+	$: innerWidth = 0
 
   const onSubmit = () => {
-    $answers = [...$answers, selectedImg === answer];
+    $answers = [...$answers, selectedOption];
     quizIndex.update(n => n + 1)
     if($quizIndex == numberOfQuestions) {
       finished.set(true)
@@ -57,23 +65,30 @@
   }
 </script>
 
+<svelte:window bind:innerWidth />
+
+{#if answered}
+  {answered}
+{/if}
+
 {#if $quizIndex == index}
-  <h2>Which dog is the {breed}?</h2>
-  {#if show}
-    <div class="button">
-      <Button text="Select Dog" href='' on:click={onSubmit} />
-    </div>
-  {/if}
-  <div class="container">
-    {#each images as image(image.id)}
+  <div class="card" >
       <div class="image">
-        <DogImg
-          url={image.url}
-          id={image.id}
-          on:click="{_ => selectedImg = image.id}"
-          selected="{selectedImg === image.id}"
-        />
+        <DogImg url={image} />
       </div>
-    {/each}
+      {#if show}
+        <div class="button">
+          <Button text="Select Dog" href='' on:click={onSubmit}/>
+        </div>
+      {/if}
+      <div class="options">
+        {#each options as option}
+          <Option 
+            {...option}
+            on:click="{_ => {selectedOption = option; show = true}}"
+            selected="{selectedOption.breed === option.breed}"
+          />
+        {/each}
+      </div>
   </div>
 {/if}

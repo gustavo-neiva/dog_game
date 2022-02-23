@@ -8,11 +8,21 @@ export const finished = writable(false);
 export const loading = writable({});
 export const numberOfQuestions = 3 //max is 12
 
+const buildOptions = (correctUrl, imagesUrl) => {
+  const allOptions = imagesUrl
+  const wrongUrls = allOptions.splice(0, 3)
+  const wrongOptions = wrongUrls.map(url => {
+    return { correct: false, breed: unslugify(url.split('/')[4])}
+  })
+  const correctOption = { correct: true, breed: unslugify(correctUrl.split('/')[4])}
+  const orderedOptions = [ ...wrongOptions, correctOption ]
+  const options = shuffle(orderedOptions)
+  return options
+}
+
 const buildQuiz = async () => {
-  const numberOfOptions = 4
   const url = 'https://dog.ceo/api/breeds/image/random/50';
   let questionIndex = 0;
-  let imageIndex = 0;
   const questions = [];
   
   try {
@@ -22,13 +32,8 @@ const buildQuiz = async () => {
       const images = message;
       const shuffledImages = shuffle(images);
       while (questionIndex < numberOfQuestions) {
-        const imagesSelection = shuffledImages.splice(0, numberOfOptions);
-        const images = imagesSelection.map((url) => {
-          imageIndex += 1
-          return { id: imageIndex, url }
-        })
-        const randomElement = images[Math.floor(Math.random() * images.length)];
-        const question = { answer: randomElement.id, breed: unslugify(randomElement.url.split('/')[4]), images, index: questionIndex }
+        const [ randomElement ]= shuffledImages.splice(Math.floor(Math.random() * images.length), 1);
+        const question = { options: buildOptions(randomElement, shuffledImages), image: randomElement, index: questionIndex, answered: false}
         questions.push(question)
         questionIndex += 1
       }

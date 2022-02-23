@@ -1,15 +1,5 @@
-<script>
-  export let href, text;
-</script>
 
-<a
-  href={href}
-  on:click
->
-  {text}
-</a>
-
-<style>
+<style lang="postcss">
   a, a:link, a:visited {
     border: 0.3rem solid #876445;
     background: darkgray;
@@ -50,3 +40,14 @@
     transition: all .4s;
   }
 </style>
+
+<script>
+  export let href, text;
+</script>
+
+<a
+  href={href}
+  on:click
+>
+  {text}
+</a>

@@ -1,29 +1,17 @@
 <style lang="postcss">
   .dog-img {
-    cursor: pointer;
     object-fit: cover;
     width: 100%;
     height: 100%;
     transition: all .2s;
     border-radius: 15px;
   }
-
-  .dog-img:hover:not(.selected) {
-    transform: scale(1.03, 1.01) translateY(3px);
-    border: none;
-  }
-
-  .selected {
-    border: 0.5rem solid gold;
-  }
 </style>
 
 <script>
   import LottiePlayer from './LottiePlayer.svelte';
 
-  export let id
-  export let url
-  export let selected
+  export let url;
 
   const preload = async (src) => {
     const resp = await fetch(src);
@@ -45,10 +33,7 @@
 {:then base64}
   <img
     src="{base64}"
-    id={id}
     alt="Dog to choose"
     class="dog-img"
-    on:click
-    class:selected
   >
 {/await}
