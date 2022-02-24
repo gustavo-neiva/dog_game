@@ -1,33 +1,26 @@
 <style lang="postcss">
   h2 {
-		font-size: 4.8rem;
+		font-size: 3.6rem;
 		text-align: center;
-    color: white;
-    width: 100rem;
-    margin: auto;
+    color: darkgray;
+    margin-top: 1rem;
 	}
 
-  .container  {
+  .question  {
+    position: relative;
 		display: grid;
-    justify-content: center;
-    align-items: center;
+    height: 80vh;
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 50% 40%;
     justify-items: center;
-    
-    @media (max-width: 64rem)  {
-      grid-template-columns: 1fr;
-    }
-
-    @media (min-width: 64rem)  {
-      grid-template-columns: 25% 25%;
-      row-gap: 5rem;
-    }
-	}
+    align-items: center;
+    overflow: hidden;
+  }
 
   .image {
-    text-align: center;
     margin: 2rem;
-    height: max(calc(100vh/4), calc(100vw/4));
-    width: max(calc(100vh/4), calc(100vw/4));
+    height: 30rem;
+    width: 30rem;
   }
 
   .button {
@@ -44,7 +37,6 @@
 	import Option from './option.svelte';
   import Button from './Button.svelte';
   import { quizIndex, answers, numberOfQuestions, finished } from '../store';
-  import { fade, fly } from 'svelte/transition';
 
   export let index;
   export let image;
@@ -72,7 +64,8 @@
 {/if}
 
 {#if $quizIndex == index}
-  <div class="card" >
+  <div class="question" >
+      <h2>Which dog is this?</h2>
       <div class="image">
         <DogImg url={image} />
       </div>

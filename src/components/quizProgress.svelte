@@ -2,7 +2,7 @@
   progress {
 		display: block;
 		width: 100%;
-    height: 2rem;
+    height: 1rem;
     appearance: none;
 	}
 

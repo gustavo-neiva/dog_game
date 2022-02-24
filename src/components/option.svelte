@@ -1,13 +1,24 @@
 <style lang="postcss">
   .option {
     cursor: pointer;
-    width: 50rem;
-    height: 3rem;
+    width: 70rem;
+    margin: 0.5rem;
+    padding-left: 1.4rem;
+    font-size: 2.8rem;
+    border: 0.2rem solid darkgrey;
+    border-radius: 2px;
+    &:hover {
+      border-color: blue;
+    }
+  }
+
+  .selected {
+    border-color: blue;
   }
 </style>
 
 <script>
-  export let correct, breed, selected;
+  export let breed, selected;
 </script>
 
 <div class="option" on:click class:selected>

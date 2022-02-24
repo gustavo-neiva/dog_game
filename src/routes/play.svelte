@@ -1,26 +1,25 @@
 <style>
   .progress-bar {
     text-align: center;
-    width: 60%;
-    transform: translateX(30%);
-    margin: 2rem;
+    width: 40rem;
+    margin: auto;
   }
 
-  /* #main {
+  #main {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    height: calc(100vh - 10%);
-    width: calc(100vw - 10%);
-    padding: 15px;
+    transform: translate(-50%, -50%);
+    height: 80rem;
+    width: 80rem;
+    padding: 0.5rem;
 
     background-color: white;
     border-radius: 6px;
-    box-shadow: 0 0 5px white;
+    box-shadow: 0 0 .5rem white;
 
     text-align: left;
-  } */
+  }
 </style>
 
 <script>
