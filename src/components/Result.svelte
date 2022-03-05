@@ -9,7 +9,7 @@
   import LottiePlayer from './LottiePlayer.svelte';
   import { answers, numberOfQuestions, quiz, finished, quizIndex, startGame} from '../store';
   const correct = $answers.filter(Boolean).length;
-	import Button from "./Button.svelte";
+	import Arrow from "./arrow.svelte";
 
   const reset = () => {
     $quiz = [];
@@ -33,6 +33,4 @@
       <li>{answer.correct}</li>
     {/each}
   </ul>
-
-  <Button text="Restart" href='' on:click={reset} />
 </div>

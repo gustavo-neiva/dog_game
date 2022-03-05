@@ -33,7 +33,7 @@ const buildQuiz = async () => {
       const shuffledImages = shuffle(images);
       while (questionIndex < numberOfQuestions) {
         const [ randomElement ]= shuffledImages.splice(Math.floor(Math.random() * images.length), 1);
-        const question = { options: buildOptions(randomElement, shuffledImages), image: randomElement, index: questionIndex, answered: false}
+        const question = { options: buildOptions(randomElement, shuffledImages), image: randomElement, index: questionIndex, answered: false }
         questions.push(question)
         questionIndex += 1
       }

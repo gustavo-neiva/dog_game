@@ -7,14 +7,20 @@
 	}
 
   .question  {
+    height: 100%;
     position: relative;
 		display: grid;
-    height: 80vh;
     grid-template-columns: 100%;
     grid-template-rows: 10% 50% 40%;
     justify-items: center;
     align-items: center;
     overflow: hidden;
+  }
+
+  .center {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
   }
 
   .image {
@@ -23,37 +29,54 @@
     width: 30rem;
   }
 
-  .button {
-    text-align: center;
-    position: absolute;
-    left: 50%;
-    top: 60%;
-    transform: translateX(-50%);
+  .option {
+    min-width: 10rem;
+    margin: auto;
   }
+
+  .navigation {
+    margin: auto;
+    min-width: 10rem;
+  }
+
+  .confirm {
+    z-index: 999;
+  }
+
 </style>
 
 <script>
   import DogImg from './DogImg.svelte';
 	import Option from './option.svelte';
-  import Button from './Button.svelte';
+  import Arrow from './arrow.svelte';
   import { quizIndex, answers, numberOfQuestions, finished } from '../store';
 
   export let index;
   export let image;
   export let options;
   export let answered;
-
   
-  $: show = false;
+  $: hasAnswered = answered;
+  $: hasSelected = false;
   $: selectedOption = { breed: null, correct: null };
 	$: innerWidth = 0
 
-  const onSubmit = () => {
+  const answer = () => {
+    hasAnswered = true;
+    hasSelected = true;
     $answers = [...$answers, selectedOption];
+  }
+
+  const onSubmit = () => {
+    if(answered) { console.log('vai')}
     quizIndex.update(n => n + 1)
     if($quizIndex == numberOfQuestions) {
       finished.set(true)
     }
+  }
+
+  const goBack = () => {
+    quizIndex.update(n => n - 1)
   }
 </script>
 
@@ -63,25 +86,35 @@
   {answered}
 {/if}
 
-{#if $quizIndex == index}
-  <div class="question" >
-      <h2>Which dog is this?</h2>
+{#if $quizIndex === index}
+  <div class="question">
+    <div class="top">
+      <h2>What breed is this dog?</h2>
+    </div>
+    <div class="center">
+      <div class="navigation">
+        <div class="arrow-left" hidden={index === 0}>
+          <Arrow direction="left" on:click={goBack} />
+        </div>
+      </div>
       <div class="image">
         <DogImg url={image} />
       </div>
-      {#if show}
-        <div class="button">
-          <Button text="Select Dog" href='' on:click={onSubmit}/>
+      <div class="navigation">
+        <p on:click={answer} hidden={!hasSelected || hasAnswered} class="confirm">Choose</p>
+        <div class="arrow-right" hidden={!hasAnswered}>
+          <Arrow direction="right" on:click={onSubmit}/>
         </div>
-      {/if}
-      <div class="options">
-        {#each options as option}
-          <Option 
-            {...option}
-            on:click="{_ => {selectedOption = option; show = true}}"
-            selected="{selectedOption.breed === option.breed}"
-          />
-        {/each}
       </div>
+    </div>
+    <div class="bottom">
+      {#each options as option}
+        <Option 
+          {...option}
+          on:click="{_ => {selectedOption = option; hasSelected = true}}"
+          selected="{selectedOption.breed === option.breed}"
+        />
+      {/each}
+    </div>
   </div>
 {/if}

@@ -8,19 +8,23 @@
     border: 0.2rem solid darkgrey;
     border-radius: 2px;
     &:hover {
-      border-color: blue;
+      border-color: green;
     }
   }
 
   .selected {
+    border-color: green;
+  }
+
+  .correct {
     border-color: blue;
   }
 </style>
 
 <script>
-  export let breed, selected;
+  export let breed, selected, correct;
 </script>
 
-<div class="option" on:click class:selected>
+<div class="option" on:click class:selected >
   {breed}
 </div>
