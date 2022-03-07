@@ -4,7 +4,7 @@
 		flex-direction: row;
 	}
 	h1 {
-		font-size: 6rem;
+		font-size: 5.6rem;
 		text-align: center;
 		-webkit-text-stroke-color: black;
 		-webkit-text-stroke-width: 1px;
@@ -16,6 +16,7 @@
 		justify-content: center;
 		align-items: center;
 		height: 100%;
+		margin: 5rem;
 	}
 	.right {
 		width: 70%;
@@ -24,7 +25,7 @@
 				rgba(0, 0, 0, 0.1),
 				rgba(0, 0, 0, 0.1)
 			),
-			url('./dogs.jpeg');
+			url('https://res.cloudinary.com/dohfsgcbx/image/upload/v1646659102/dogs_uk3eev.jpg');
 			min-height: 100vh;
 	}
 
