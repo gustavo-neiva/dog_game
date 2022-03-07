@@ -7,7 +7,7 @@ export const quizIndex = writable(0);
 export const answerIndex = writable(-1);
 export const finished = writable(false);
 export const loading = writable({});
-export const numberOfQuestions = 12 //max is 12
+export const numberOfQuestions = 5 //max is 12
 
 const buildOptions = (correctUrl, imagesUrl) => {
   const allOptions = imagesUrl
@@ -26,7 +26,7 @@ const buildQuiz = async () => {
   const url = 'https://dog.ceo/api/breeds/image/random/50';
   let questionIndex = 0;
   const questions = [];
-  
+
   try {
     const response = await fetch(url);
     if (response.ok) {

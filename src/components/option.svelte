@@ -35,7 +35,6 @@
   $: answeredClassName = correct ? 'correct' : 'wrong'
   $: answeredClass = answered ? answeredClassName : null
   $: paintRight = disabled && correct ? 'correct' : null
-  console.log(answered && correct)
 </script>
 
 <div class="option {answeredClass} {paintRight}" on:click class:selected class:disabled>

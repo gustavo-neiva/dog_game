@@ -10,7 +10,7 @@
 
 <script>
   import LottiePlayer from './LottiePlayer.svelte';
-  
+
   export let url;
 
   const preload = async (src) => {
