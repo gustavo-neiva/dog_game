@@ -41,6 +41,18 @@
     margin: auto;
   }
 
+  .button {
+    position: relative;
+  }
+
+  .animation {
+    position: absolute;
+    z-index: 10;
+    top: -10;
+    left: 10;
+    transform: translate(100%, -100%);
+  }
+
   .disabled {
     opacity: 0.3;
     pointer-events: none;
@@ -52,6 +64,7 @@
 	import Option from './option.svelte';
   import Button from './button.svelte';
   import QuizProgress from './quizProgress.svelte';
+  import LottiePlayer from './LottiePlayer.svelte';
   import { quizIndex, answers, numberOfQuestions, finished, answerIndex } from '../store';
 
   export let index;
@@ -64,10 +77,12 @@
   $: selectedOption = { breed: null, correct: null };
 	$: innerWidth = 0
   $: buttonText = hasAnswered ? 'Next question' : 'Check'
+  $: correct = null;
 
   const answer = () => {
     hasAnswered = true;
     hasSelected = true;
+    correct = selectedOption.correct
     $answers = [...$answers, selectedOption];
     answerIndex.update(n => n + 1)
   }
@@ -108,6 +123,14 @@
         <QuizProgress></QuizProgress>
       </div>
       <div class="button" class:disabled={!hasSelected}>
+        <div class="animation">
+          {#if correct && hasAnswered}
+            <LottiePlayer path={'./correct.json'} height={50} width={50} loop={false}/>
+          {/if}
+          {#if !correct && hasAnswered}
+            <LottiePlayer path={'./wrong.json'} height={50} width={50} loop={false}/>
+          {/if}
+        </div>
         <Button
           on:click={hasAnswered ? onSubmit : answer}
           texto={buttonText}

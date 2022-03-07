@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
-  
-  export let path, height, width, speed = 0.5;
+
+  export let path, height, width, speed = 0.5, loop = true;
   let LottiePlayer;
 
   onMount(async () => {
@@ -14,7 +14,7 @@
   <LottiePlayer
     src="{path}"
     autoplay="{true}"
-    loop="{true}"
+    loop="{loop}"
     speed="{speed}"
     controls="{false}"
     renderer="svg"
