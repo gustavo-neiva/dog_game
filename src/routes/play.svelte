@@ -14,8 +14,8 @@
 
 <script>
   import { startGame, finished } from '../store'
-  import Result from '../lib/Result.svelte';
-  import Quiz from '../lib/quiz.svelte';
+  import Result from './../lib/Result.svelte';
+  import Quiz from './../lib/quiz.svelte';
 
 	startGame()
 </script>
