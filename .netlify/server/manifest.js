@@ -34,7 +34,7 @@ const manifest = {
   assets: /* @__PURE__ */ new Set(["arrow-left.svg", "arrow-right.svg", "correct.json", "dog-correct.json", "dog-loading.json", "dog-walking.json", "dogs.jpeg", "favicon.png", "icon.svg", "wrong.json"]),
   _: {
     mime: { ".svg": "image/svg+xml", ".json": "application/json", ".jpeg": "image/jpeg", ".png": "image/png" },
-    entry: { "file": "start-8179753c.js", "js": ["start-8179753c.js", "chunks/vendor-7f7f6d25.js", "chunks/preload-helper-e4860ae8.js", "chunks/singletons-d1fb5791.js"], "css": [] },
+    entry: { "file": "start-022d25f9.js", "js": ["start-022d25f9.js", "chunks/vendor-7f7f6d25.js", "chunks/preload-helper-e4860ae8.js", "chunks/singletons-d1fb5791.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => __toESM(require("./nodes/0.js"))),
       () => Promise.resolve().then(() => __toESM(require("./nodes/1.js"))),
