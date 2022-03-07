@@ -19,7 +19,7 @@
   import LottiePlayer from './LottiePlayer.svelte';
   import { answers, numberOfQuestions, quiz, finished, quizIndex, answerIndex, startGame} from '../store';
 	import Button from "./button.svelte";
-  
+
   const reset = () => {
     $quiz = [];
     $answers = [];
@@ -32,7 +32,7 @@
 
   const correct = $answers.filter(el => el.correct !== true).length;
   const percentRight = correct/numberOfQuestions
-  
+
   let funText = ""
   if (percentRight < 0.2) funText = "My cat would know better"
   if (percentRight > 0.2 && percentRight < 0.4) funText = "We guess that you don't know much about dogs"
@@ -44,15 +44,15 @@
 
 <div class="score">
   <h3>
-    You got {correct} out of {numberOfQuestions} correct! 
+    You got {correct} out of {numberOfQuestions} correct!
     <br>
     {funText}
   </h3>
 
   <LottiePlayer path={'./dog-walking.json'} height={300} width={300}/>
 
-  <Button 
-    on:click={reset} 
+  <Button
+    on:click={reset}
     texto={"Restart"}
   />
 </div>
