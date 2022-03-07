@@ -48,7 +48,7 @@
 </style>
 
 <script>
-  import DogImg from './DogImg.svelte';
+  import DogImg from './dogImg.svelte';
 	import Option from './option.svelte';
   import Button from './button.svelte';
   import QuizProgress from './quizProgress.svelte';
@@ -58,7 +58,7 @@
   export let image;
   export let options;
   export let answered;
-  
+
   $: hasAnswered = answered;
   $: hasSelected = false;
   $: selectedOption = { breed: null, correct: null };
@@ -94,7 +94,7 @@
     </div>
     <div class="options">
       {#each options as option}
-        <Option 
+        <Option
           {...option}
           on:click="{_ => {selectedOption = option; hasSelected = true}}"
           selected="{selectedOption.breed === option.breed}"
@@ -108,8 +108,8 @@
         <QuizProgress></QuizProgress>
       </div>
       <div class="button" class:disabled={!hasSelected}>
-        <Button 
-          on:click={hasAnswered ? onSubmit : answer} 
+        <Button
+          on:click={hasAnswered ? onSubmit : answer}
           texto={buttonText}
         />
       </div>
