@@ -8,9 +8,11 @@
   .progress-container {
     left: 0;
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-around;
+    align-items: center;
   }
 
   .steps {
@@ -19,14 +21,30 @@
     justify-content: space-around;
     align-items: center;
     margin-left: 1rem;
+    height: 100%;
   }
 
   .step {
-    width: 1.2rem;
-    height: 1.2rem;
     border: 2px solid #BABEC2;
     border-radius: 50%;
-    margin: 0 0.5rem;
+
+    @media screen and (max-width: 768px) {
+      width: 1rem;
+      height: 1rem;
+      margin: 0 .3rem;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      width: 1rem;
+      height: 1rem;
+      margin: 0 .3rem;
+    }
+
+    @media screen and (min-width: 1024px) {
+      width: 1.2rem;
+      height: 1.2rem;
+      margin: 0 0.5rem;
+    }
   }
 
   .current {

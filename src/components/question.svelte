@@ -1,13 +1,25 @@
 <style lang="postcss">
   h2 {
-		font-size: 3.6rem;
 		text-align: center;
     color: darkgray;
-    margin-top: 1rem;
+
+    @media screen and (max-width: 768px) {
+      font-size: 2.4rem;
+      margin-top: 0.5rem;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      font-size: 3.2rem;
+      margin-top: 0.8rem;
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: 3.6rem;
+      margin-top: 1rem;
+    }
 	}
 
   .question  {
-    height: 100%;
     position: relative;
 		display: grid;
     grid-template-columns: 100%;
@@ -30,14 +42,13 @@
   }
 
   .bottom {
-    width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   .progress-bar {
     text-align: left;
-    width: 100%;
     margin: auto;
   }
 
@@ -45,12 +56,21 @@
     opacity: 0.3;
     pointer-events: none;
   }
+
+  .loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
 </style>
 
 <script>
   import DogImg from './DogImg.svelte';
 	import Option from './option.svelte';
   import Button from './button.svelte';
+  import LottiePlayer from './LottiePlayer.svelte';
   import QuizProgress from './quizProgress.svelte';
   import { quizIndex, answers, numberOfQuestions, finished, answerIndex } from '../store';
 
@@ -64,6 +84,18 @@
   $: selectedOption = { breed: null, correct: null };
 	$: innerWidth = 0
   $: buttonText = hasAnswered ? 'Next question' : 'Check'
+
+  const preload = async (src) => {
+    const resp = await fetch(src);
+		const blob = await resp.blob();
+
+		return new Promise((resolve) => {
+			let reader = new FileReader();
+			reader.readAsDataURL(blob);
+			reader.onload = () => resolve(reader.result);
+			reader.onerror = (error) => reject('Error: ', error);
+		});
+  };
 
   const answer = () => {
     hasAnswered = true;
@@ -83,36 +115,42 @@
 <svelte:window bind:innerWidth />
 
 {#if $quizIndex === index}
-  <div class="question">
-    <div class="top">
-      <h2>What breed is this dog?</h2>
+  {#await preload(image)}
+    <div class="loading">
+      <LottiePlayer path={'./dog-loading.json'} height={300} width={300}/>
     </div>
-    <div class="center">
-      <div class="image">
-        <DogImg url={image} />
+    {:then base64}
+    <div class="question">
+      <div class="top">
+        <h2>What breed is this dog?</h2>
+      </div>
+      <div class="center">
+        <div class="image">
+          <DogImg base64={base64} />
+        </div>
+      </div>
+      <div class="options">
+        {#each options as option}
+          <Option 
+            {...option}
+            on:click="{_ => {selectedOption = option; hasSelected = true}}"
+            selected="{selectedOption.breed === option.breed}"
+            answered="{selectedOption.breed === option.breed && hasAnswered}"
+            disabled={hasAnswered}
+          />
+        {/each}
+      </div>
+      <div class="bottom">
+        <div class="progress-bar">
+          <QuizProgress></QuizProgress>
+        </div>
+        <div class="button" class:disabled={!hasSelected}>
+          <Button 
+            on:click={hasAnswered ? onSubmit : answer} 
+            texto={buttonText}
+          />
+        </div>
       </div>
     </div>
-    <div class="options">
-      {#each options as option}
-        <Option 
-          {...option}
-          on:click="{_ => {selectedOption = option; hasSelected = true}}"
-          selected="{selectedOption.breed === option.breed}"
-          answered="{selectedOption.breed === option.breed && hasAnswered}"
-          disabled={hasAnswered}
-        />
-      {/each}
-    </div>
-    <div class="bottom">
-      <div class="progress-bar">
-        <QuizProgress></QuizProgress>
-      </div>
-      <div class="button" class:disabled={!hasSelected}>
-        <Button 
-          on:click={hasAnswered ? onSubmit : answer} 
-          texto={buttonText}
-        />
-      </div>
-    </div>
-  </div>
+  {/await}
 {/if}

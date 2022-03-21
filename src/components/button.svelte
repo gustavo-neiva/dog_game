@@ -5,20 +5,39 @@
     background: rgb(24, 101, 242);
     text-decoration: none;
     font-weight: bold;
-    padding: 1rem 2rem;
     display: inline-block;
-    border-radius: 1rem;
     transition: all .2s;
     position: relative;
-    font-size: 1.6rem;
     white-space: nowrap;
-    min-width: 15rem;
     text-align: center;
     cursor: pointer;
+
+    @media screen and (max-width: 768px) {
+      min-width: 8rem;
+      font-size: 1.2rem;
+      padding: 0.6rem 1.4rem;
+      border-radius: .6rem;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      min-width: 12rem;
+      font-size: 1.4rem;
+      padding: .8rem .8rem;
+      border-radius: .8rem;
+    }
+
+    @media screen and (min-width: 1024px) {
+      min-width: 15rem;
+      font-size: 1.6rem;
+      padding: 1rem 2rem;
+      border-radius: 1rem;
+    }
   }
+
   button:active {
     transform: translateY(-1px);
   }
+  
   button::after {
     content: '';
     display: inline-block;

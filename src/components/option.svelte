@@ -1,13 +1,28 @@
 <style lang="postcss">
   .option {
     cursor: pointer;
-    width: 70rem;
-    margin: 0.5rem;
-    padding-left: 1.4rem;
-    font-size: 2.8rem;
     border: 0.2rem solid darkgrey;
     border-radius: 0.5rem;
     transition: all .2s ease-in-out;
+    margin: 0.5rem;
+
+    @media screen and (max-width: 768px) {
+      width: 30rem;
+      padding-left: 1rem;
+      font-size: 2.2rem;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      width: 50rem;
+      padding-left: 1.2rem;
+      font-size: 2.4rem;
+    }
+
+    @media screen and (min-width: 1024px) {
+      width: 70rem;
+      padding-left: 1.4rem;
+      font-size: 2.8rem;
+    }
   }
 
   .selected {
@@ -35,7 +50,6 @@
   $: answeredClassName = correct ? 'correct' : 'wrong'
   $: answeredClass = answered ? answeredClassName : null
   $: paintRight = disabled && correct ? 'correct' : null
-  console.log(answered && correct)
 </script>
 
 <div class="option {answeredClass} {paintRight}" on:click class:selected class:disabled>

@@ -5,6 +5,7 @@
 	}
 	h1 {
 		font-size: 6rem;
+		line-height: 10rem;
 		text-align: center;
 		-webkit-text-stroke-color: black;
 		-webkit-text-stroke-width: 1px;
@@ -13,9 +14,10 @@
 	.left {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: space-evenly;
 		align-items: center;
-		height: 100%;
+		height: 100vh;
+		width: 30%;
 	}
 	.right {
 		width: 70%;
@@ -29,7 +31,6 @@
 	}
 
 	.icon {
-		margin-top: 12rem;
 		min-width: 25vh;
 		min-height: 25vh;
 		cursor: pointer;

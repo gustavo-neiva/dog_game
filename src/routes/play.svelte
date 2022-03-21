@@ -1,14 +1,36 @@
 <style lang="postcss">
+  .game {
+    background-image: url('patinhas.png');
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   #main {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    padding: 0.5rem;
     background-color: #FAFAFF;
     border-radius: 6px;
     box-shadow: 0 0 .5rem #FAFAFF;
     text-align: left;
+    width: 60vw;
+    height: 80vh;
+    overflow: auto;
+    margin: 0;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      height: 90vh;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      border: 3px solid black;
+    }
+
+    @media screen and (min-width: 1024px) {
+      border: 3px solid black;
+    }
   }
 </style>
 
@@ -19,10 +41,12 @@
 
 	startGame()
 </script>
-<div id="main">
-  {#if $finished}
-    <Result/>
-  {:else}
-    <Quiz/>
-  {/if}
+<div class="game">
+  <div id="main">
+    {#if $finished}
+      <Result/>
+    {:else}
+      <Quiz/>
+    {/if}
+  </div>
 </div>

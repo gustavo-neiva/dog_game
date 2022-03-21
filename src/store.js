@@ -6,7 +6,7 @@ export const answers = writable([]);
 export const quizIndex = writable(0);
 export const answerIndex = writable(-1);
 export const finished = writable(false);
-export const loading = writable({});
+export const loading = writable(true);
 export const numberOfQuestions = 12 //max is 12
 
 const buildOptions = (correctUrl, imagesUrl) => {
