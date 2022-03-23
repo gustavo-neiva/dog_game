@@ -1,6 +1,6 @@
 <script>
   import Question from './question.svelte';
-  import { quiz, loading } from '../store'
+  import { quiz } from '../store'
 </script>
 
 {#each $quiz as question}

@@ -4,24 +4,19 @@
     border: 0.2rem solid darkgrey;
     border-radius: 0.5rem;
     transition: all .2s ease-in-out;
-    margin: 0.5rem;
-
-    @media screen and (max-width: 768px) {
-      width: 30rem;
-      padding-left: 1rem;
-      font-size: 2.2rem;
+    margin: 0.7rem 0;
+    width: 100%;
+    
+    @media (min-width: 1024px) {
+      font-size: 2.8rem;
     }
 
-    @media screen and (min-width: 768px) and (max-width: 1024px) {
-      width: 50rem;
-      padding-left: 1.2rem;
+    @media (min-width: 768px) and (max-width: 1024px) {
       font-size: 2.4rem;
     }
 
-    @media screen and (min-width: 1024px) {
-      width: 70rem;
-      padding-left: 1.4rem;
-      font-size: 2.8rem;
+    @media (max-width: 768px) {
+      font-size: 2.2rem;
     }
   }
 
@@ -43,6 +38,10 @@
   .disabled {
     pointer-events: none;
   }
+
+  .text {
+    padding-left: 1rem;
+  }
 </style>
 
 <script>
@@ -53,5 +52,7 @@
 </script>
 
 <div class="option {answeredClass} {paintRight}" on:click class:selected class:disabled>
-  {breed}
+  <span class="text">
+    {breed}
+  </span>
 </div>

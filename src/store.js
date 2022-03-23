@@ -9,12 +9,16 @@ export const finished = writable(false);
 export const loading = writable(true);
 export const numberOfQuestions = 12 //max is 12
 
+const removeBreedFromUrl = (url) => {
+  return unslugify(url.split('/')[4])
+}
+
 const buildOptions = (correctUrl, imagesUrl) => {
   const allOptions = imagesUrl
   shuffle(allOptions)
-  const wrongUrls = allOptions.filter(url => url !== correctUrl).splice(0, 3)
+  const wrongUrls = allOptions.filter(url => removeBreedFromUrl(url) !== removeBreedFromUrl(correctUrl)).splice(0, 3)
   const wrongOptions = wrongUrls.map(url => {
-    return { correct: false, breed: unslugify(url.split('/')[4])}
+    return { correct: false, breed: removeBreedFromUrl(url)}
   })
   const correctOption = { correct: true, breed: unslugify(correctUrl.split('/')[4])}
   const orderedOptions = [ ...wrongOptions, correctOption ]

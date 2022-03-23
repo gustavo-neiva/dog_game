@@ -19,37 +19,28 @@
     }
 	}
 
-  .question  {
-    position: relative;
-		display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 10% 50% 33% 7%;
-    justify-items: center;
-    align-items: center;
-    overflow: hidden;
-  }
-
   .center {
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
+    margin: 0;
   }
 
   .image {
     margin: 2rem;
     height: 30rem;
     width: 30rem;
+    margin: 0 auto;
+    display: block;
   }
 
   .bottom {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
+    margin-bottom: 1rem;
   }
 
   .progress-bar {
     text-align: left;
-    margin: auto;
+    height: 100%;
   }
 
   .disabled {
@@ -58,11 +49,32 @@
   }
 
   .loading {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .options {
+    width: 100%;
+  }
+
+  .bottom__item:last-of-type {
+    margin-left: auto;
+  }
+
+  .question > * {
+    margin-top: 2rem;
+  }
+
+  .button {
+    position: relative;
+  }
+
+  .animation {
+    position: absolute;
+    z-index: 100;
+    transform: translateX(-100%);
   }
 </style>
 
@@ -84,6 +96,7 @@
   $: selectedOption = { breed: null, correct: null };
 	$: innerWidth = 0
   $: buttonText = hasAnswered ? 'Next question' : 'Check'
+  $: isCorrect = null;
 
   const preload = async (src) => {
     const resp = await fetch(src);
@@ -100,6 +113,7 @@
   const answer = () => {
     hasAnswered = true;
     hasSelected = true;
+    isCorrect = selectedOption.correct;
     $answers = [...$answers, selectedOption];
     answerIndex.update(n => n + 1)
   }
@@ -117,7 +131,7 @@
 {#if $quizIndex === index}
   {#await preload(image)}
     <div class="loading">
-      <LottiePlayer path={'./dog-loading.json'} height={300} width={300}/>
+      <LottiePlayer path={'./dog-loading.json'} height={375} width={375} loop={false}/>
     </div>
     {:then base64}
     <div class="question">
@@ -141,10 +155,19 @@
         {/each}
       </div>
       <div class="bottom">
-        <div class="progress-bar">
+        <div class="bottom__item progress-bar">
           <QuizProgress></QuizProgress>
         </div>
-        <div class="button" class:disabled={!hasSelected}>
+        <div class="bottom__item button" class:disabled={!hasSelected}>
+          {#if hasAnswered && isCorrect}
+            <div class="animation">
+              <LottiePlayer path={'./correct.json'} height={50} width={50} loop={false}/>
+            </div>
+          {:else if hasAnswered && !isCorrect}
+            <div class="animation">
+              <LottiePlayer path={'./wrong.json'} height={35} width={35} loop={false}/>
+            </div>
+          {/if}
           <Button 
             on:click={hasAnswered ? onSubmit : answer} 
             texto={buttonText}
