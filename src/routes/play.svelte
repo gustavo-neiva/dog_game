@@ -1,6 +1,6 @@
 <style lang="postcss">
   .game {
-    background-image: url('patinhas.png');
+    background-image: url('https://res.cloudinary.com/dohfsgcbx/image/upload/v1649123829/patinhas_m469qs.png');
     width: 100%;
     min-height: 100vh;
     display: flex;
