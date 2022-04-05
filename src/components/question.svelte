@@ -43,6 +43,18 @@
     height: 100%;
   }
 
+  .button {
+    position: relative;
+  }
+
+  .animation {
+    position: absolute;
+    z-index: 10;
+    top: -10;
+    left: 10;
+    transform: translate(100%, -100%);
+  }
+
   .disabled {
     opacity: 0.3;
     pointer-events: none;
@@ -79,18 +91,19 @@
 </style>
 
 <script>
-  import DogImg from './DogImg.svelte';
+  import DogImg from './dogImg.svelte';
 	import Option from './option.svelte';
   import Button from './button.svelte';
   import LottiePlayer from './LottiePlayer.svelte';
   import QuizProgress from './quizProgress.svelte';
+  import LottiePlayer from './LottiePlayer.svelte';
   import { quizIndex, answers, numberOfQuestions, finished, answerIndex } from '../store';
 
   export let index;
   export let image;
   export let options;
   export let answered;
-  
+
   $: hasAnswered = answered;
   $: hasSelected = false;
   $: selectedOption = { breed: null, correct: null };

@@ -26,7 +26,7 @@
 				rgba(0, 0, 0, 0.1),
 				rgba(0, 0, 0, 0.1)
 			),
-			url('./dogs.jpeg');
+			url('https://res.cloudinary.com/dohfsgcbx/image/upload/v1646659102/dogs_uk3eev.jpg');
 			min-height: 100vh;
 	}
 

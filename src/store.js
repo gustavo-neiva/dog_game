@@ -30,7 +30,7 @@ const buildQuiz = async () => {
   const url = 'https://dog.ceo/api/breeds/image/random/50';
   let questionIndex = 0;
   const questions = [];
-  
+
   try {
     const response = await fetch(url);
     if (response.ok) {
