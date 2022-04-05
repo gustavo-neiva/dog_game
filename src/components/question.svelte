@@ -96,7 +96,6 @@
   import Button from './button.svelte';
   import LottiePlayer from './LottiePlayer.svelte';
   import QuizProgress from './quizProgress.svelte';
-  import LottiePlayer from './LottiePlayer.svelte';
   import { quizIndex, answers, numberOfQuestions, finished, answerIndex } from '../store';
 
   export let index;
