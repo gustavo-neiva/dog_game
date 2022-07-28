@@ -1,3 +1,26 @@
+<script>
+  import { quizIndex, numberOfQuestions, answers, answerIndex } from '../store';
+
+  $: rightAnswer = (row) => {
+    if (row <= $answerIndex) {
+      return  $answers[row].correct ? "right": "wrong" 
+    }
+    ''
+  }
+</script>
+
+<div class="progress-container">
+  <div class="steps">
+    {#each Array(numberOfQuestions) as _, row}
+      <div 
+        class='step {rightAnswer(row)}'
+        class:current={row === $quizIndex}
+      >
+    </div>
+    {/each}
+  </div>
+</div>
+
 <style lang="postcss">
   p {
     font-size: large;
@@ -8,10 +31,9 @@
   .progress-container {
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 0.675rem;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     align-items: center;
   }
 
@@ -20,15 +42,17 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    margin-left: 1rem;
     height: 100%;
+    width: 100%;
   }
 
   .step {
-    border: 2px solid #BABEC2;
-    border-radius: 50%;
-
-    @media screen and (max-width: 768px) {
+    border-radius: 0.375rem;
+    width: 100%;
+    height: 100%;
+    margin: 0 0.125rem;
+    background-color: rgba(244,245,249,0.4);
+    /* @media screen and (max-width: 768px) {
       width: 1rem;
       height: 1rem;
       margin: 0 .3rem;
@@ -44,33 +68,20 @@
       width: 1.2rem;
       height: 1.2rem;
       margin: 0 0.5rem;
-    }
+    } */
   }
 
   .current {
     transition: all .2s ease-in-out;
-    transform: scale(1.3);
+    background-color: white;
+    opacity: 0.95;
   }
 
-  .answered {
-    background-color: rgb(24, 101, 242);
-    border: transparent;
+  .right {
+    background-color: rgb(89,195,100);
+  }
+
+  .wrong {
+    background-color: rgb(200, 45, 81);
   }
 </style>
-<script>
-  import { quizIndex, numberOfQuestions, answers, answerIndex } from '../store';  
-</script>
-
-<div class="progress-container">
-  <p>{$quizIndex + 1} of {numberOfQuestions}</p>
-  <div class="steps">
-    {#each Array(numberOfQuestions) as _, row}
-      <div 
-        class="step" 
-        class:current={row === $quizIndex}
-        class:answered={row <= $answerIndex}
-      >
-    </div>
-    {/each}
-  </div>
-</div>

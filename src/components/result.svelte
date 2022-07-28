@@ -1,19 +1,3 @@
-<style>
-  .score {
-    font-size: 3rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  h3 {
-    text-align: center;
-    font-size: 2.8rem;
-    line-height: 5.6rem;
-    margin: 2rem;
-  }
-</style>
-
 <script>
   import { goto } from '$app/navigation';
   import LottiePlayer from './LottiePlayer.svelte';
@@ -56,3 +40,19 @@
     texto={"Restart"}
   />
 </div>
+
+<style>
+  .score {
+    font-size: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h3 {
+    text-align: center;
+    font-size: 2.8rem;
+    line-height: 5.6rem;
+    margin: 2rem;
+  }
+</style>
