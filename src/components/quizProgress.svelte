@@ -13,8 +13,8 @@
   <div class="steps">
     {#each Array(numberOfQuestions) as _, row}
       <div 
-        class='step {rightAnswer(row)}'
         class:current={row === $quizIndex}
+        class='step {rightAnswer(row)}'
       >
     </div>
     {/each}
@@ -22,16 +22,10 @@
 </div>
 
 <style lang="postcss">
-  p {
-    font-size: large;
-    font-weight: bold;
-    margin-left: 1rem;
-  }
-
   .progress-container {
     left: 0;
     width: 100%;
-    height: 0.675rem;
+    height: 0.82rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -44,6 +38,7 @@
     align-items: center;
     height: 100%;
     width: 100%;
+    margin: 0 0.1rem;
   }
 
   .step {
@@ -52,29 +47,12 @@
     height: 100%;
     margin: 0 0.125rem;
     background-color: rgba(244,245,249,0.4);
-    /* @media screen and (max-width: 768px) {
-      width: 1rem;
-      height: 1rem;
-      margin: 0 .3rem;
-    }
-
-    @media screen and (min-width: 768px) and (max-width: 1024px) {
-      width: 1rem;
-      height: 1rem;
-      margin: 0 .3rem;
-    }
-
-    @media screen and (min-width: 1024px) {
-      width: 1.2rem;
-      height: 1.2rem;
-      margin: 0 0.5rem;
-    } */
   }
 
   .current {
     transition: all .2s ease-in-out;
-    background-color: white;
-    opacity: 0.95;
+    background: rgba(255, 255, 255, 0.95);
+    filter: saturate(80%);
   }
 
   .right {

@@ -1,3 +1,13 @@
+<script>
+  export let texto
+</script>
+
+<button
+  on:click
+>
+  {texto}
+</button>
+
 <style lang="postcss">
   button, button:link, button:visited {
     color: white;
@@ -51,13 +61,3 @@
     transition: all .4s;
   }
 </style>
-
-<script>
-  export let texto
-</script>
-
-<button
-  on:click
->
-  {texto}
-</button>

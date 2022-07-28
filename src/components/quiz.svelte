@@ -4,10 +4,9 @@
   import QuizProgress from './quizProgress.svelte';
 </script>
 
-<div class="">
+<div class="questions">
   <QuizProgress></QuizProgress>
+  {#each $quiz as question}
+    <Question {...question}/>
+  {/each}
 </div>
-
-{#each $quiz as question}
-  <Question {...question}/>
-{/each}

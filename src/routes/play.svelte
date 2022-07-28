@@ -16,14 +16,7 @@
 
 <style lang="postcss">
  #main {
-    position: relative;
     text-align: center;
     padding-top: 0.5rem;
-    height: 100%;
-    width: 100%;
-
-    @media screen and (max-width: 768px) {
-      width: 90vw;
-    }
   }
 </style>

@@ -1,10 +1,25 @@
+<script>
+  export let breed, correct, answered, disabled;
+  $: answeredClassName = correct ? 'correct' : 'wrong'
+  $: answeredClass = answered ? answeredClassName : ''
+  $: paintRight = disabled && correct ? 'correct' : ''
+</script>
+
+<div class="option {answeredClass} {paintRight}" on:click class:disabled>
+  <span class="text">
+    {breed}
+  </span>
+</div>
+
 <style lang="postcss">
   .option {
     cursor: pointer;
-    border: 0.2rem solid darkgrey;
-    border-radius: 0.5rem;
+    background-color: #fafaff;
+    border-radius: 3.3rem;
     transition: all .2s ease-in-out;
-    margin: 0.7rem 0;
+    margin: 1.225rem 0;
+    padding: 0.675rem 0;
+    color: #37383a;
     width: 100%;
     
     @media (min-width: 1024px) {
@@ -12,27 +27,28 @@
     }
 
     @media (min-width: 768px) and (max-width: 1024px) {
-      font-size: 2.4rem;
+      font-size: 2rem;
     }
 
     @media (max-width: 768px) {
-      font-size: 2.2rem;
+      font-size: 1.8rem;
+    }
+
+    &:last-child {
+      margin-bottom: 3.3rem;
+    }
+
+    &:hover {
+      transform: scale(101.3%);
     }
   }
 
-  .selected {
-    border-color: maroon;
-    border-width: 0.3rem;
-  }
-
   .correct {
-    border-color: #3AA394;
-    border-width: 0.4rem;
+    background-color: rgb(89,195,100);
   }
 
   .wrong {
-    border-color: red;
-    border-width: 0.4rem;
+    background-color: rgb(200, 45, 81);
   }
 
   .disabled {
@@ -43,16 +59,3 @@
     padding-left: 1rem;
   }
 </style>
-
-<script>
-  export let breed, selected, correct, answered, disabled;
-  $: answeredClassName = correct ? 'correct' : 'wrong'
-  $: answeredClass = answered ? answeredClassName : null
-  $: paintRight = disabled && correct ? 'correct' : null
-</script>
-
-<div class="option {answeredClass} {paintRight}" on:click class:selected class:disabled>
-  <span class="text">
-    {breed}
-  </span>
-</div>

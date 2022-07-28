@@ -3,7 +3,9 @@
 	import Option from './option.svelte';
   import Button from './button.svelte';
   import LottiePlayer from './LottiePlayer.svelte';
+  import Arrow from './arrow.svelte'; 
   import { quizIndex, answers, numberOfQuestions, finished, answerIndex } from '../store';
+import { loop_guard } from 'svelte/internal';
 
   export let index;
   export let image;
@@ -14,7 +16,6 @@
   $: hasSelected = false;
   $: selectedOption = { breed: null, correct: null };
 	$: innerWidth = 0
-  $: buttonText = hasAnswered ? 'Next question' : 'Check'
   $: isCorrect = null;
 
   const preload = async (src) => {
@@ -36,13 +37,6 @@
     $answers = [...$answers, selectedOption];
     answerIndex.update(n => n + 1)
   }
-
-  const onSubmit = () => {
-    quizIndex.update(n => n + 1)
-    if($quizIndex == numberOfQuestions) {
-      finished.set(true)
-    }
-  }
 </script>
 
 <svelte:window bind:innerWidth />
@@ -54,26 +48,31 @@
     </div>
     {:then base64}
     <div class="question">
-      <div class="top">
-        <h2>What breed is this dog?</h2>
+      <div class="image">
+        <DogImg base64={base64} />
       </div>
       <div class="center">
-        <div class="image">
-          <DogImg base64={base64} />
-        </div>
+        <h2>What breed is this dog?</h2>
+
+        {#if $quizIndex >= 1}
+          <Arrow direction='left'/>
+        {/if}
+
+        {#if hasAnswered }
+          <Arrow direction='right'/>
+        {/if}
       </div>
       <div class="options">
         {#each options as option}
           <Option 
             {...option}
             on:click="{_ => {selectedOption = option; hasSelected = true; answer()}}"
-            selected="{selectedOption.breed === option.breed}"
             answered="{selectedOption.breed === option.breed && hasAnswered}"
             disabled={hasAnswered}
           />
         {/each}
       </div>
-      <div class="bottom">
+      <!-- <div class="bottom">
         <div class="bottom__item button" class:disabled={!hasSelected}>
           {#if hasAnswered && isCorrect}
             <div class="animation">
@@ -84,12 +83,12 @@
               <LottiePlayer path={'./wrong.json'} height={35} width={35} loop={false}/>
             </div>
           {/if}
-          <!-- <Button 
+          <Button 
             on:click={hasAnswered ? onSubmit : answer} 
             texto={buttonText}
-          /> -->
+          />
         </div>
-      </div>
+      </div> -->
     </div>
   {/await}
 {/if}
@@ -99,19 +98,19 @@
 		text-align: center;
     color: darkgray;
 
-    @media screen and (max-width: 768px) {
-      font-size: 2.4rem;
-      margin-top: 0.5rem;
-    }
-
-    @media screen and (min-width: 768px) and (max-width: 1024px) {
-      font-size: 3.2rem;
-      margin-top: 0.8rem;
-    }
-
     @media screen and (min-width: 1024px) {
       font-size: 3.6rem;
       margin-top: 1rem;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      font-size: 3rem;
+      margin-top: 0.6rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 2.4rem;
+      margin-top: 0.2rem;
     }
 	}
 
@@ -120,11 +119,26 @@
   }
 
   .image {
-    margin: 2rem;
-    height: 30rem;
-    width: 30rem;
     margin: 0 auto;
     display: block;
+
+    @media screen and (min-width: 1024px) {
+      margin: 2rem;
+      height: 40rem;
+      width: 40rem;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      margin: 1.2rem;
+      height: 30rem;
+      width: 30rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      margin: 1rem;
+      height: 25rem;
+      width: 25rem;
+    }
   }
 
   .bottom {
@@ -132,11 +146,6 @@
     justify-content: space-evenly;
     align-items: center;
     margin-bottom: 1rem;
-  }
-
-  .progress-bar {
-    text-align: left;
-    height: 100%;
   }
 
   .button {
@@ -164,24 +173,23 @@
   }
   
   .options {
-    width: 100%;
+    width: 75%;
+    max-width: 73rem;
   }
 
   .bottom__item:last-of-type {
     margin-left: auto;
   }
 
+  .question {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100vh;
+  }
+
   .question > * {
-    margin-top: 2rem;
-  }
-
-  .button {
-    position: relative;
-  }
-
-  .animation {
-    position: absolute;
-    z-index: 100;
-    transform: translateX(-100%);
+    margin-top: 1.5rem;
   }
 </style>
