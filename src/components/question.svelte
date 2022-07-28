@@ -1,11 +1,10 @@
 <script>
-  import DogImg from './dogImg.svelte';
-	import Option from './option.svelte';
-  import Button from './button.svelte';
+  import DogImg from './DogImg.svelte';
+	import Option from './Option.svelte';
   import LottiePlayer from './LottiePlayer.svelte';
-  import Arrow from './arrow.svelte'; 
-  import { quizIndex, answers, numberOfQuestions, finished, answerIndex } from '../store';
-import { loop_guard } from 'svelte/internal';
+  import { fade, fly } from 'svelte/transition';
+  import Arrow from './Arrow.svelte'; 
+  import { quizIndex, answers, answerIndex } from '../store';
 
   export let index;
   export let image;
@@ -44,23 +43,25 @@ import { loop_guard } from 'svelte/internal';
 {#if $quizIndex === index}
   {#await preload(image)}
     <div class="loading">
-      <LottiePlayer path={'./dog-loading.json'} height={375} width={375} loop={false}/>
+      <LottiePlayer path={'./loading.json'} height={375} width={375} />
     </div>
-    {:then base64}
-    <div class="question">
+  {:then base64}
+    {#if $quizIndex >= 1}
+      <div class="arrow-left" in:fade out:fade>
+        <Arrow direction='left' />
+      </div>
+    {/if}
+    {#if hasAnswered }
+      <div class="arrow-right" in:fade out:fade>
+        <Arrow direction='right'/>
+      </div>
+    {/if}
+    <div class="question" in:fly="{{ x: 200, duration: 1600 }}" out:fade>
       <div class="image">
         <DogImg base64={base64} />
       </div>
       <div class="center">
         <h2>What breed is this dog?</h2>
-
-        {#if $quizIndex >= 1}
-          <Arrow direction='left'/>
-        {/if}
-
-        {#if hasAnswered }
-          <Arrow direction='right'/>
-        {/if}
       </div>
       <div class="options">
         {#each options as option}
@@ -100,23 +101,16 @@ import { loop_guard } from 'svelte/internal';
 
     @media screen and (min-width: 1024px) {
       font-size: 3.6rem;
-      margin-top: 1rem;
     }
 
     @media screen and (min-width: 768px) and (max-width: 1024px) {
       font-size: 3rem;
-      margin-top: 0.6rem;
     }
 
     @media screen and (max-width: 768px) {
       font-size: 2.4rem;
-      margin-top: 0.2rem;
     }
 	}
-
-  .center {
-    margin: 0;
-  }
 
   .image {
     margin: 0 auto;
@@ -139,17 +133,6 @@ import { loop_guard } from 'svelte/internal';
       height: 25rem;
       width: 25rem;
     }
-  }
-
-  .bottom {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-
-  .button {
-    position: relative;
   }
 
   .animation {
@@ -187,9 +170,5 @@ import { loop_guard } from 'svelte/internal';
     justify-content: space-evenly;
     align-items: center;
     height: 100vh;
-  }
-
-  .question > * {
-    margin-top: 1.5rem;
   }
 </style>

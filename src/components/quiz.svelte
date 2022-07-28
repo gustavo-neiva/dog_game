@@ -1,12 +1,10 @@
 <script>
-  import Question from './question.svelte';
+  import Question from './Question.svelte';
   import { quiz } from '../store'
-  import QuizProgress from './quizProgress.svelte';
+  import QuizProgress from './QuizProgress.svelte';
 </script>
 
-<div class="questions">
-  <QuizProgress></QuizProgress>
-  {#each $quiz as question}
-    <Question {...question}/>
-  {/each}
-</div>
+<QuizProgress></QuizProgress>
+{#each $quiz as question}
+  <Question {...question}/>
+{/each}

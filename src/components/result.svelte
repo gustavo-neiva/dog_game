@@ -2,7 +2,7 @@
   import { goto } from '$app/navigation';
   import LottiePlayer from './LottiePlayer.svelte';
   import { answers, numberOfQuestions, quiz, finished, quizIndex, answerIndex, startGame} from '../store';
-	import Button from "./button.svelte";
+	import Button from "./Button.svelte";
 
   const reset = () => {
     $quiz = [];
@@ -11,7 +11,7 @@
     answerIndex.set(-1)
     finished.set(false)
     startGame()
-    goto('/play')
+    goto('/')
   }
 
   let correct = $answers.filter(el => el.correct === true).length;

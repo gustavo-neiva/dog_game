@@ -7,6 +7,12 @@
     }
     ''
   }
+
+  function goTo(row) {
+    if (row <= $answerIndex) {
+      quizIndex.update(_ => row)
+    }
+  }
 </script>
 
 <div class="progress-container">
@@ -15,6 +21,7 @@
       <div 
         class:current={row === $quizIndex}
         class='step {rightAnswer(row)}'
+        on:click={() => goTo(row)}
       >
     </div>
     {/each}
@@ -50,16 +57,19 @@
   }
 
   .current {
-    transition: all .2s ease-in-out;
+    transition: all .25s ease-in-out;
     background: rgba(255, 255, 255, 0.95);
     filter: saturate(80%);
+    cursor: pointer;
   }
 
   .right {
     background-color: rgb(89,195,100);
+    cursor: pointer;
   }
 
   .wrong {
     background-color: rgb(200, 45, 81);
+    cursor: pointer;
   }
 </style>
