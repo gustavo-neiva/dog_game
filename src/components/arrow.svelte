@@ -1,0 +1,59 @@
+<script>
+  import { finished, quizIndex, numberOfQuestions } from '../store';
+  export let direction = 'right';
+
+  function next() {
+    quizIndex.update(n => n + 1)
+    if($quizIndex == numberOfQuestions) {
+      finished.set(true)
+    }
+  }
+
+  function back() {
+    quizIndex.update(n => n - 1)
+  }
+</script>
+
+<div class="arrow {direction}" on:click={direction == 'right' ? next : back}>
+</div>
+
+
+<style lang="postcss">
+.arrow {
+  cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: 3vmin;
+	height: 3vmin;
+	background: transparent;
+	border-top: 1vmin solid white;
+	border-right: 1vmin solid white;
+	box-shadow: 0 0 0 lightgray;
+	transition: all 200ms ease;
+	
+	&.left {
+		left: 2.4rem;
+		transform: translate3d(0,-50%,0) rotate(-135deg);
+	}
+
+	&.right {
+		right: 2.4rem;
+		transform: translate3d(0,-50%,0) rotate(45deg);
+	}
+	
+	&:hover {
+		border-color: #a88960;
+		box-shadow: 0.5vmin -0.5vmin 0 white;
+	}
+	
+	&:before { 
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-40%,-60%) rotate(45deg);
+		width: 200%;
+		height: 200%;
+	}
+}
+</style>
