@@ -73,13 +73,13 @@
     </div>
   {:then base64}
     {#if $quizIndex >= 1}
-      <div class="arrow-left" in:fade out:fade>
+      <div class="arrow-left" in:fade={{ duration: $durationIn }} out:fade>
         <Arrow direction='left' />
       </div>
     {/if}
     
     {#if hasAnswered }
-      <div class="arrow-right" in:fade out:fade>
+      <div class="arrow-right" in:fade={{ duration: $durationIn }} out:fade>
         <Arrow direction='right'/>
       </div>
     {/if}

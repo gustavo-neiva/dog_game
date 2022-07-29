@@ -12,6 +12,10 @@
 
   const translateX = '50%';
   $: translateY = innerHeight >= innerWidth ? `-${innerHeight * 0.01}rem` : '-100%';
+
+  if( answered && isCorrect && !played) {
+    played = true
+  }
 </script>
 
 <svelte:window bind:innerWidth bind:innerHeight/>
@@ -20,7 +24,6 @@
   {#if answered && isCorrect && !played}
     <div class="animation" style='transform: translate({translateX}, {translateY});'>
       <LottiePlayer path={'./correct.json'} height={innerHeight/2} width={innerWidth/2} loop={false}/>
-      {played = true}
     </div>
   {/if}
   <span class="text">
