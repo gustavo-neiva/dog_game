@@ -4,17 +4,17 @@
   import LottiePlayer from './LottiePlayer.svelte';
   import { fade, fly } from 'svelte/transition';
   import Arrow from './Arrow.svelte'; 
-  import { quizIndex, answers, answerIndex } from '../store';
-
+  import { quizIndex, answers, answerIndex, back, next, durationIn, xIn, durationOut } from '../store';
   export let index;
   export let image;
   export let options;
   export let answered;
 
+  let xDown;    
+
   $: hasAnswered = answered;
-  $: hasSelected = false;
   $: selectedOption = { breed: null, correct: null };
-	$: innerWidth = 0
+	$: innerWidth = 0;
   $: isCorrect = null;
 
   const preload = async (src) => {
@@ -31,10 +31,36 @@
 
   const answer = () => {
     hasAnswered = true;
-    hasSelected = true;
     isCorrect = selectedOption.correct;
     $answers = [...$answers, selectedOption];
     answerIndex.update(n => n + 1)
+  }
+
+  const handleTouchMove = (e) => {
+    if ( ! xDown ) {
+        return;
+    }
+
+    let xUp = e.touches[0].clientX;                                    
+
+    let xDiff = xDown - xUp;
+                                                                        
+    if (xDiff > 0) {
+      if (hasAnswered) {
+        next()
+      }
+    } else {
+      if ($quizIndex >= 1) {
+        back()
+      }
+    }                       
+  
+    xDown = null;
+  }
+
+  const handleTouchStart = (e) => {
+    const firstTouch = e.touches[0];                                      
+    xDown = firstTouch.clientX;                                      
   }
 </script>
 
@@ -43,7 +69,7 @@
 {#if $quizIndex === index}
   {#await preload(image)}
     <div class="loading">
-      <LottiePlayer path={'./loading.json'} height={375} width={375} />
+      <LottiePlayer path={'./loading.json'} height={innerWidth} width={innerWidth} />
     </div>
   {:then base64}
     {#if $quizIndex >= 1}
@@ -51,12 +77,20 @@
         <Arrow direction='left' />
       </div>
     {/if}
+    
     {#if hasAnswered }
       <div class="arrow-right" in:fade out:fade>
         <Arrow direction='right'/>
       </div>
     {/if}
-    <div class="question" in:fly="{{ x: 200, duration: 1600 }}" out:fade>
+
+    <div 
+      class="question" 
+      in:fly={{ x: $xIn, duration: $durationIn }}
+      out:fade={{ duration: $durationOut }}
+      on:touchmove={handleTouchMove} 
+      on:touchstart={handleTouchStart}
+    >
       <div class="image">
         <DogImg base64={base64} />
       </div>
@@ -65,31 +99,17 @@
       </div>
       <div class="options">
         {#each options as option}
-          <Option 
-            {...option}
-            on:click="{_ => {selectedOption = option; hasSelected = true; answer()}}"
-            answered="{selectedOption.breed === option.breed && hasAnswered}"
-            disabled={hasAnswered}
-          />
+          <div class="option">
+            <Option 
+              {...option}
+              on:click="{_ => {selectedOption = option; answer()}}"
+              answered="{selectedOption.breed === option.breed && hasAnswered}"
+              disabled={hasAnswered}
+              isCorrect={isCorrect}
+            />
+          </div>
         {/each}
       </div>
-      <!-- <div class="bottom">
-        <div class="bottom__item button" class:disabled={!hasSelected}>
-          {#if hasAnswered && isCorrect}
-            <div class="animation">
-              <LottiePlayer path={'./correct.json'} height={50} width={50} loop={false}/>
-            </div>
-          {:else if hasAnswered && !isCorrect}
-            <div class="animation">
-              <LottiePlayer path={'./wrong.json'} height={35} width={35} loop={false}/>
-            </div>
-          {/if}
-          <Button 
-            on:click={hasAnswered ? onSubmit : answer} 
-            texto={buttonText}
-          />
-        </div>
-      </div> -->
     </div>
   {/await}
 {/if}
@@ -108,7 +128,7 @@
     }
 
     @media screen and (max-width: 768px) {
-      font-size: 2.4rem;
+      font-size: 2.2rem;
     }
 	}
 
@@ -129,22 +149,14 @@
     }
 
     @media screen and (max-width: 768px) {
-      margin: 1rem;
-      height: 25rem;
-      width: 25rem;
+      margin: 0.7rem;
+      height: 20rem;
+      width: 20rem;
     }
   }
 
-  .animation {
-    position: absolute;
-    z-index: 10;
-    top: -10;
-    left: 10;
-    transform: translate(100%, -100%);
-  }
-
   .disabled {
-    opacity: 0.3;
+    opacity: 0.2;
     pointer-events: none;
   }
 
@@ -158,10 +170,10 @@
   .options {
     width: 75%;
     max-width: 73rem;
-  }
 
-  .bottom__item:last-of-type {
-    margin-left: auto;
+    @media (max-width: 768px) {
+      margin-bottom: 3rem;
+    }
   }
 
   .question {

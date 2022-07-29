@@ -1,17 +1,6 @@
 <script>
-  import { finished, quizIndex, numberOfQuestions } from '../store';
+  import { next, back} from '../store';
   export let direction = 'right';
-
-  function next() {
-    quizIndex.update(n => n + 1)
-    if($quizIndex == numberOfQuestions) {
-      finished.set(true)
-    }
-  }
-
-  function back() {
-    quizIndex.update(n => n - 1)
-  }
 </script>
 
 <div class="arrow {direction}" on:click={direction == 'right' ? next : back}>

@@ -8,3 +8,4 @@
 {#each $quiz as question}
   <Question {...question}/>
 {/each}
+

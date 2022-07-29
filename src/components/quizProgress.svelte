@@ -59,7 +59,7 @@
   .current {
     transition: all .25s ease-in-out;
     background: rgba(255, 255, 255, 0.95);
-    filter: saturate(80%);
+    filter: saturate(60%);
     cursor: pointer;
   }
 
