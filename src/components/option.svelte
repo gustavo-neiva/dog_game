@@ -1,31 +1,13 @@
 <script>
   import LottiePlayer from './LottiePlayer.svelte';
 
-  export let breed, correct, answered, disabled, isCorrect;
+  export let breed, correct, answered, disabled;
   $: answeredClassName = correct ? 'correct' : 'wrong'
   $: answeredClass = answered ? answeredClassName : ''
   $: paintRight = disabled && correct ? 'correct' : ''
-  $: innerWidth = 0;
-  $: innerHeight = 0;
-
-  let played = false;
-
-  const translateX = '50%';
-  $: translateY = innerHeight >= innerWidth ? `-${innerHeight * 0.01}rem` : '-100%';
-
-  if( answered && isCorrect && !played) {
-    played = true
-  }
 </script>
 
-<svelte:window bind:innerWidth bind:innerHeight/>
-
 <div class="option {answeredClass} {paintRight} " on:click class:disabled>
-  {#if answered && isCorrect && !played}
-    <div class="animation" style='transform: translate({translateX}, {translateY});'>
-      <LottiePlayer path={'./correct.json'} height={innerHeight/2} width={innerWidth/2} loop={false}/>
-    </div>
-  {/if}
   <span class="text">
     {breed}
   </span>
@@ -40,7 +22,14 @@
     transition: all .2s ease-in-out;
     padding: 0.675rem 0;
     color: #37383a;
-    width: 100%;
+    width: 73%;
+    max-width: 50rem;
+
+    @media (max-width: 768px) {
+      &:last-child {
+        margin-bottom: 3rem;
+      }
+    }
     
     @media (min-width: 1024px) {
       font-size: 2.8rem;
@@ -53,8 +42,7 @@
     }
 
     @media (max-width: 768px) {
-      font-size: 1.6rem;
-      margin: 0.6rem 0;
+      font-size: 2rem;
     }
 
     &:last-child {
@@ -81,12 +69,4 @@
   .text {
     padding-left: 1rem;
   }
-
-  .animation {
-    position: absolute;
-    z-index: 999;
-    top: 0;
-    right: 50%;
-  }
-
 </style>

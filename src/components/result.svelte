@@ -1,7 +1,8 @@
 <script>
   import { goto } from '$app/navigation';
   import LottiePlayer from './LottiePlayer.svelte';
-  import { answers, numberOfQuestions, quiz, finished, quizIndex, answerIndex, startGame} from '../store';
+  import { answers, numberOfQuestions, quiz, finished, quizIndex, answerIndex } from '../store';
+  import { startGame } from '../lib/buildQuiz';
 	import Button from "./Button.svelte";
 
   const reset = () => {

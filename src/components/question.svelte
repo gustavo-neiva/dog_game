@@ -1,8 +1,9 @@
 <script>
+  import { fade, fly } from 'svelte/transition';
+  import { cubicOut } from 'svelte/easing';
   import DogImg from './DogImg.svelte';
 	import Option from './Option.svelte';
   import LottiePlayer from './LottiePlayer.svelte';
-  import { fade, fly } from 'svelte/transition';
   import Arrow from './Arrow.svelte'; 
   import { quizIndex, answers, answerIndex, back, next, durationIn, xIn, durationOut } from '../store';
   export let index;
@@ -10,12 +11,14 @@
   export let options;
   export let answered;
 
-  let xDown;    
+  let xDown;
 
   $: hasAnswered = answered;
   $: selectedOption = { breed: null, correct: null };
-	$: innerWidth = 0;
+  $: innerWidth = 0;
+  $: innerHeight = 0;
   $: isCorrect = null;
+  $: positionY = 0;
 
   const preload = async (src) => {
     const resp = await fetch(src);
@@ -29,10 +32,14 @@
 		});
   };
 
-  const answer = () => {
+  const answer = (e) => {
     hasAnswered = true;
     isCorrect = selectedOption.correct;
     $answers = [...$answers, selectedOption];
+    const button = e.target;
+    const rect = button.getBoundingClientRect();
+    positionY = rect.top
+    console.log(rect.top, rect.right, rect.bottom, rect.left);
     answerIndex.update(n => n + 1)
   }
 
@@ -58,13 +65,14 @@
     xDown = null;
   }
 
+
   const handleTouchStart = (e) => {
     const firstTouch = e.touches[0];                                      
     xDown = firstTouch.clientX;                                      
   }
 </script>
 
-<svelte:window bind:innerWidth />
+<svelte:window bind:innerWidth bind:innerHeight />
 
 {#if $quizIndex === index}
   {#await preload(image)}
@@ -86,7 +94,7 @@
 
     <div 
       class="question" 
-      in:fly={{ x: $xIn, duration: $durationIn }}
+      in:fly|local={{ x: $xIn, duration: $durationIn, easing: cubicOut }}
       out:fade={{ duration: $durationOut }}
       on:touchmove={handleTouchMove} 
       on:touchstart={handleTouchStart}
@@ -97,20 +105,20 @@
       <div class="center">
         <h2>What breed is this dog?</h2>
       </div>
-      <div class="options">
-        {#each options as option}
-          <div class="option">
-            <Option 
-              {...option}
-              on:click="{_ => {selectedOption = option; answer()}}"
-              answered="{selectedOption.breed === option.breed && hasAnswered}"
-              disabled={hasAnswered}
-              isCorrect={isCorrect}
-            />
-          </div>
-        {/each}
-      </div>
+      {#each options as option}
+        <Option 
+          {...option}
+          on:click="{e => { selectedOption = option; answer(e) } }"
+          answered="{selectedOption.breed === option.breed && hasAnswered}"
+          disabled={hasAnswered}
+        />
+      {/each}
     </div>
+    {#if hasAnswered && isCorrect}
+      <div class="animation" style="top: {positionY}px;">
+        <LottiePlayer path={'./correct.json'} height={innerHeight/2} width={innerWidth/2} loop={false}/>
+      </div>
+    {/if}
   {/await}
 {/if}
 
@@ -138,8 +146,8 @@
 
     @media screen and (min-width: 1024px) {
       margin: 2rem;
-      height: 40rem;
-      width: 40rem;
+      height: 38rem;
+      width: 38rem;
     }
 
     @media screen and (min-width: 768px) and (max-width: 1024px) {
@@ -166,15 +174,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  
-  .options {
-    width: 75%;
-    max-width: 73rem;
-
-    @media (max-width: 768px) {
-      margin-bottom: 3rem;
-    }
-  }
 
   .question {
     display: flex;
@@ -182,5 +181,12 @@
     justify-content: space-evenly;
     align-items: center;
     height: 100vh;
+  }
+
+  .animation {
+    position: absolute;
+    z-index: 999;
+    right: 25vw;
+    transform: translateY(-50%);
   }
 </style>
