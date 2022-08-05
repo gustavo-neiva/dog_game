@@ -1,6 +1,4 @@
 <script>
-  import LottiePlayer from './LottiePlayer.svelte';
-
   export let breed, correct, answered, disabled;
   $: answeredClassName = correct ? 'correct' : 'wrong'
   $: answeredClass = answered ? answeredClassName : ''
@@ -22,27 +20,27 @@
     transition: all .2s ease-in-out;
     padding: 0.675rem 0;
     color: #37383a;
-    width: 73%;
-    max-width: 50rem;
+    width: 80%;
+    max-width: 60rem;
+    height: auto;
 
     @media (max-width: 768px) {
       &:last-child {
         margin-bottom: 3rem;
       }
     }
-    
     @media (min-width: 1024px) {
       font-size: 2.8rem;
       margin: 1.4rem 0;
     }
 
     @media (min-width: 768px) and (max-width: 1024px) {
-      font-size: 2.2rem;
+      font-size: 2.6rem;
       margin: 1.1rem 0;
     }
 
     @media (max-width: 768px) {
-      font-size: 2rem;
+      font-size: 2.4rem;
     }
 
     &:last-child {
