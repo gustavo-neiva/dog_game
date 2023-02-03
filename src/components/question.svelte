@@ -22,7 +22,6 @@
   $: positionY = 0;
 
   let animationHeight = innerHeight;
-  let animationWidth = innerWidth;
 
   if (innerWidth > 760) {
     animationHeight = animationHeight * 1.1
@@ -47,7 +46,6 @@
     const button = e.target;
     const rect = button.getBoundingClientRect();
     positionY = rect.top
-    console.log(rect.top, rect.right, rect.bottom, rect.left);
     answerIndex.update(n => n + 1)
   }
 
@@ -78,8 +76,6 @@
     const firstTouch = e.touches[0];                                      
     xDown = firstTouch.clientX;                                      
   }
-
-  xIn.set(innerWidth)
 </script>
 
 <svelte:window bind:innerWidth bind:innerHeight />
@@ -105,7 +101,7 @@
 
     <div 
       class="question" 
-      in:fly|local={{ x: innerWidth/2, duration: $durationIn, easing: cubicOut }}
+      in:fly|local={{ x: $xIn, duration: $durationIn, easing: cubicOut }}
       out:fade={{ duration: $durationOut }}
       on:touchmove={handleTouchMove} 
       on:touchstart={handleTouchStart}
@@ -172,11 +168,6 @@
       height: 29rem;
       width: 30rem;
     }
-  }
-
-  .disabled {
-    opacity: 0.2;
-    pointer-events: none;
   }
 
   .loading {
