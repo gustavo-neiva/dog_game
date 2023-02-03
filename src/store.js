@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store';
+import { get, writable } from 'svelte/store';
 
 // const storedGames = localStorage.getItem("games");
 
@@ -12,7 +12,7 @@ export const loading = writable(true);
 export const xIn = writable(700);
 export const durationIn = writable(2000);
 export const durationOut = writable(600);
-export const numberOfQuestions = 12; //max is 12
+export const numberOfQuestions = 2; //max is 12
 
 // games.subscribe(value => {
 //   localStorage.setItem("games", value);
@@ -21,7 +21,8 @@ export const numberOfQuestions = 12; //max is 12
 export const next = () => {
 	xIn.update((n) => (n = Math.abs(n)));
 	quizIndex.update((n) => n + 1);
-	if (quizIndex >= numberOfQuestions) {
+	const index = get(quizIndex);
+	if (index >= numberOfQuestions) {
 		finished.set(true);
 	}
 };

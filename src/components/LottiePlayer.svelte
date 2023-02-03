@@ -27,7 +27,6 @@
 		if (player) {
 			const lottie = player.getLottie();
 			lottie.addEventListener('complete', () => {
-				console.log('complete');
 				finishAnimation();
 			});
 		}

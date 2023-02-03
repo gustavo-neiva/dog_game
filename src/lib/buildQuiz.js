@@ -6,7 +6,6 @@ const removeBreedFromUrl = (url) => {
 };
 
 const preload = async (src) => {
-	console.log(src);
 	const resp = await fetch(src);
 	const blob = await resp.blob();
 

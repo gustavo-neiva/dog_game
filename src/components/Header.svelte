@@ -16,7 +16,6 @@
 		align-items: center;
 		flex-wrap: nowrap;
 		height: 6rem;
-		border-bottom: 1px solid rgb(159, 159, 159);
 		margin-bottom: 0.5rem;
 		padding: 0 1rem;
 	}
