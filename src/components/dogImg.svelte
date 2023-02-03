@@ -1,19 +1,15 @@
 <script>
-  export let base64;
+	export let image;
 </script>
 
-<img
-  src="{base64}"
-  alt="Dog to choose"
-  class="dog-img"
->
+<img src={image} alt="Dog to choose" class="dog-img" />
 
 <style lang="postcss">
-  .dog-img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    transition: all .2s;
-    border-radius: 15px;
-  }
+	.dog-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+		transition: all 0.2s;
+		border-radius: 15px;
+	}
 </style>

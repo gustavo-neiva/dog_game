@@ -2,35 +2,31 @@
 *,
 *::after,
 *::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
 }
 
 html {
-  font-size: 62.5%;
-  background-color: #3b4435;
-  height: 100%;
-  margin: 0 auto;
-  overflow: hidden;
-  width: 100%;
+	font-size: 62.5%;
+	background-color: #3a3a3c;
+	height: 100%;
+	margin: 0 auto;
+	overflow: hidden;
+	width: 100%;
 }
 
 body {
-  box-sizing: border-box;
-}
-
-body {
-  font-weight: 400;
-  line-height: 1.7;
-  color: #fafaff;
-  flex-direction: column;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  height: 100vh;
+	box-sizing: border-box;
+	font-weight: 400;
+	line-height: 1.7;
+	color: #fafaff;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
 }
 
 a {
-  text-decoration: none;
-  color: brown;
+	text-decoration: none;
+	color: brown;
 }
