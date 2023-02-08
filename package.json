@@ -11,25 +11,26 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/adapter-netlify": "^1.0.0-next.50",
-		"@sveltejs/kit": "next",
-		"autoprefixer": "^10.4.2",
+		"@sveltejs/adapter-netlify": "^1.0.5",
+		"@sveltejs/kit": "1.5.0",
+		"autoprefixer": "^10.4.13",
 		"eslint": "^7.32.0",
-		"eslint-config-prettier": "^8.3.0",
-		"eslint-plugin-svelte3": "^3.2.1",
-		"postcss": "^8.4.5",
-		"postcss-import": "^14.0.2",
-		"postcss-load-config": "^3.1.1",
-		"postcss-nesting": "^10.1.1",
-		"prettier": "^2.4.1",
-		"prettier-plugin-svelte": "^2.4.0",
-		"svelte": "^3.44.0",
-		"svelte-inline-svg": "^1.0.8",
-		"svelte-preprocess": "^4.10.1"
+		"eslint-config-prettier": "^8.6.0",
+		"eslint-plugin-svelte3": "^3.4.1",
+		"postcss": "^8.4.21",
+		"postcss-import": "^14.1.0",
+		"postcss-load-config": "^3.1.4",
+		"postcss-nesting": "^10.2.0",
+		"prettier": "^2.8.4",
+		"prettier-plugin-svelte": "^2.9.0",
+		"svelte": "^3.55.1",
+		"svelte-inline-svg": "^1.2.0",
+		"svelte-preprocess": "^4.10.7"
 	},
 	"type": "module",
 	"dependencies": {
 		"@lottiefiles/svelte-lottie-player": "^0.2.0",
-		"postcss-scss": "^4.0.2"
+		"postcss-scss": "^4.0.6",
+		"vite": "^4.1.1"
 	}
 }

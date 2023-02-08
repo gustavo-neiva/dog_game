@@ -4,7 +4,7 @@
 <header>
 	<div class="menu-left">menu left</div>
 	<div class="title">
-		<h1>Canine Challenge</h1>
+		<h1>Canine Cognition</h1>
 	</div>
 	<div class="menu-right">menu right</div>
 </header>
