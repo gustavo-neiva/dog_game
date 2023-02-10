@@ -1,36 +1,26 @@
 {
-	"name": "dog-game",
+	"name": "dog_game",
+	"type": "module",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "svelte-kit dev",
-		"build": "svelte-kit build",
-		"package": "svelte-kit package",
-		"preview": "svelte-kit preview",
-		"lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
-		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro"
 	},
-	"devDependencies": {
-		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/adapter-netlify": "^1.0.5",
-		"@sveltejs/kit": "1.5.0",
-		"autoprefixer": "^10.4.13",
-		"eslint": "^7.32.0",
-		"eslint-config-prettier": "^8.6.0",
-		"eslint-plugin-svelte3": "^3.4.1",
-		"postcss": "^8.4.21",
-		"postcss-import": "^14.1.0",
-		"postcss-load-config": "^3.1.4",
-		"postcss-nesting": "^10.2.0",
-		"prettier": "^2.8.4",
-		"prettier-plugin-svelte": "^2.9.0",
-		"svelte": "^3.55.1",
-		"svelte-inline-svg": "^1.2.0",
-		"svelte-preprocess": "^4.10.7"
-	},
-	"type": "module",
 	"dependencies": {
-		"@lottiefiles/svelte-lottie-player": "^0.2.0",
-		"postcss-scss": "^4.0.6",
+		"@astrojs/svelte": "^2.0.1",
+		"@lottiefiles/svelte-lottie-player": "^0.3.0",
+		"astro": "^2.0.8",
+		"autoprefixer": "^10.4.13",
+		"postcss": "^8.4.21",
+		"postcss-import": "^15.1.0",
+		"postcss-load-config": "^4.0.1",
+		"postcss-nesting": "^11.1.0",
+		"svelte": "^3.55.1",
+		"svelte-preprocess": "^5.0.1",
+		"typescript": "^4.9.5",
 		"vite": "^4.1.1"
 	}
 }

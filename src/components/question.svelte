@@ -1,4 +1,5 @@
 <script>
+	import { updateGame } from '../lib/repository';
 	import { fade, fly } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
 	import DogImg from './DogImg.svelte';
@@ -47,6 +48,7 @@
 		if (isCorrect) {
 			animate = true;
 		}
+		updateGame();
 	};
 
 	const handleTouchMove = (e) => {
