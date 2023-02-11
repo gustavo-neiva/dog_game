@@ -20,13 +20,24 @@
   .title {
     flex-grow: 2;
     font-weight: 700;
-    font-size: 2rem;
     letter-spacing: 0.01em;
     text-align: center;
     left: 0;
     right: 0;
     pointer-events: none;
     position: relative;
+
+    @media screen and (min-width: 1024px) {
+      font-size: 2rem;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      font-size: 1.5rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 1.2rem;
+    }
   }
 
   .menu-left {
