@@ -1,9 +1,9 @@
 <script>
-  export let texto;
+  export let text;
 </script>
 
 <button on:click>
-  {texto}
+  {text}
 </button>
 
 <style lang="postcss">
