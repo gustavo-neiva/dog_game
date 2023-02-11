@@ -1,11 +1,16 @@
 <script>
-  export let breed, correct, answered, disabled;
+  export let breed, correct, answered, disabled, registeredAnswer;
   $: answeredClassName = correct ? "correct" : "wrong";
   $: answeredClass = answered ? answeredClassName : "";
   $: paintRight = disabled && correct ? "correct" : "";
+  $: paintWrong = disabled && registeredAnswer ? "wrong" : "";
 </script>
 
-<div class="option {answeredClass} {paintRight} " on:click class:disabled>
+<div
+  class="option {answeredClass} {paintRight} {paintWrong}"
+  on:click
+  class:disabled
+>
   <span class="text">
     {breed}
   </span>

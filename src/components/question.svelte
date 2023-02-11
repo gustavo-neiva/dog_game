@@ -30,6 +30,7 @@
   $: innerHeight = 0;
   $: isCorrect = null;
   $: positionY = 0;
+  $: currentAnswer = $answers[$quizIndex] || { breed: null, correct: null };
 
   if (innerWidth > 760) {
     animationHeight = animationHeight * 1.1;
@@ -120,6 +121,9 @@
         }}
         answered={selectedOption.breed === option.breed && hasAnswered}
         disabled={hasAnswered}
+        registeredAnswer={currentAnswer.breed === option.breed &&
+          hasAnswered &&
+          !currentAnswer.correct}
       />
     {/each}
   </div>
