@@ -1,22 +1,29 @@
 <script>
-  import { quizIndex, numberOfQuestions, answers, answerIndex, rowIndex, xIn } from '../store';
+  import {
+    quizIndex,
+    numberOfQuestions,
+    answers,
+    answerIndex,
+    rowIndex,
+    xIn,
+  } from "../store";
 
   $: rightAnswer = (row) => {
     if (row <= $answerIndex) {
-      return  $answers[row].correct ? "right": "wrong" 
+      return $answers[row].correct ? "right" : "wrong";
     }
-    ''
-  }
+    ("");
+  };
 
   function goTo(row) {
     if (row <= $answerIndex) {
-      if(row < $rowIndex) {
-        xIn.update(n => n = -Math.abs(n))
+      if (row < $rowIndex) {
+        xIn.update((n) => (n = -Math.abs(n)));
       } else {
-        xIn.update(n => n = Math.abs(n))
+        xIn.update((n) => (n = Math.abs(n)));
       }
-      rowIndex.set(row)
-      quizIndex.update(_ => row)
+      rowIndex.set(row);
+      quizIndex.update((_) => row);
     }
   }
 </script>
@@ -24,12 +31,12 @@
 <div class="progress-container">
   <div class="steps">
     {#each Array(numberOfQuestions) as _, row}
-      <div 
+      <div
         class:current={row === $quizIndex}
-        class='step {rightAnswer(row)}'
+        class="step {rightAnswer(row)}"
         on:click={() => goTo(row)}
-      >
-    </div>
+        on:keypress={() => goTo(row)}
+      />
     {/each}
   </div>
 </div>
@@ -60,18 +67,18 @@
     width: 100%;
     height: 100%;
     margin: 0 0.125rem;
-    background-color: rgba(244,245,249,0.4);
+    background-color: rgba(244, 245, 249, 0.4);
   }
 
   .current {
-    transition: all .25s ease-in-out;
+    transition: all 0.25s ease-in-out;
     background: rgba(255, 255, 255, 0.95);
     filter: saturate(60%);
     cursor: pointer;
   }
 
   .right {
-    background-color: rgb(89,195,100);
+    background-color: rgb(89, 195, 100);
     cursor: pointer;
   }
 
