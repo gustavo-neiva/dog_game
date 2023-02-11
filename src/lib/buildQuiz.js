@@ -1,5 +1,5 @@
 import { quiz, numberOfQuestions, loading, isPlaying } from "../store";
-import { currentGame, updateGame } from "./repository";
+import { updateGame } from "./repository";
 import { shuffle, unslugify } from "./helpers";
 
 const removeBreedFromUrl = (url) => {
@@ -21,10 +21,11 @@ const buildOptions = (correctUrl, imagesUrl) => {
   const allOptions = imagesUrl;
   shuffle(allOptions);
   const uniqoptions = [...new Set(allOptions)];
-  const wrongUrls = uniqoptions
-    .filter((url) => removeBreedFromUrl(url) !== removeBreedFromUrl(correctUrl))
-    .splice(0, 3);
-  const wrongOptions = wrongUrls.map((url) => {
+  const wrongUrls = uniqoptions.filter(
+    (url) => removeBreedFromUrl(url) !== removeBreedFromUrl(correctUrl)
+  );
+  const removeDuplicates = [...new Set(wrongUrls)].splice(0, 3);
+  const wrongOptions = removeDuplicates.map((url) => {
     return { correct: false, breed: removeBreedFromUrl(url) };
   });
   const correctOption = {
@@ -37,7 +38,7 @@ const buildOptions = (correctUrl, imagesUrl) => {
 };
 
 const buildQuiz = async () => {
-  const url = "https://dog.ceo/api/breeds/image/random/50";
+  const url = `https://dog.ceo/api/breeds/image/random/50`;
   let questionIndex = 0;
 
   try {
@@ -57,15 +58,14 @@ const buildQuiz = async () => {
           index: questionIndex,
           answered: false,
         };
-
         quiz.update((items) => {
           items.push(question);
           return items;
         });
         questionIndex += 1;
+        isPlaying.set(true);
         loading.set(false);
       }
-      isPlaying.set(true);
       updateGame();
     }
   } catch (error) {
@@ -73,11 +73,7 @@ const buildQuiz = async () => {
   }
 };
 
-export const startGame = () => {
-  // if (currentGame) {
-  // 	quiz.set(currentGame.quiz);
-  // 	isPlaying.set(true);
-  // 	loading.set(false);
-  // }
-  buildQuiz();
+export const newGame = async () => {
+  loading.set(true);
+  await buildQuiz();
 };
