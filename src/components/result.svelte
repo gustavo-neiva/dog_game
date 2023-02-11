@@ -1,5 +1,4 @@
 <script>
-  import LottiePlayer from "./LottiePlayer.svelte";
   import {
     answers,
     numberOfQuestions,
@@ -7,17 +6,19 @@
     finished,
     quizIndex,
     answerIndex,
+    loading,
   } from "../store";
-  import { startGame } from "../lib/buildQuiz";
+  import { newGame } from "../lib/buildQuiz";
   import Button from "./Button.svelte";
 
   const reset = () => {
     $quiz = [];
     $answers = [];
+    loading.set(true);
     quizIndex.set(0);
     answerIndex.set(-1);
     finished.set(false);
-    startGame();
+    newGame();
   };
 
   let correct = $answers.filter((el) => el.correct === true).length;
@@ -41,6 +42,7 @@
     <br />
     {funText}
   </h3>
+  <Button text="Reset" on:click={() => reset()} />
 </div>
 
 <style>
