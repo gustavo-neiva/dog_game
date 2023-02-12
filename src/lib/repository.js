@@ -12,10 +12,19 @@ if (localStorage.getItem("current-game") === null) {
   localStorage.setItem("current-game", JSON.stringify({ isPlaying: false }));
 }
 
+if (localStorage.getItem("stats") === null) {
+  localStorage.setItem(
+    "stats",
+    JSON.stringify({ nGames: 0, maxStreak: 0, lastStreak: 0, allAnswers: [] })
+  );
+}
+
 export let currentGame = JSON.parse(localStorage.getItem("current-game"));
 
+export let stats = JSON.parse(localStorage.getItem("stats"));
+
 export const updateGame = () => {
-  let game = {
+  const game = {
     quiz: get(quiz),
     quizIndex: get(quizIndex),
     answerIndex: get(answerIndex),
@@ -33,4 +42,22 @@ export const reloadGame = () => {
   quizIndex.set(currentGame.quizIndex);
   answers.set(currentGame.answers);
   isPlaying.set(currentGame.isPlaying);
+};
+
+export const setStats = () => {
+  let { nGames, maxStreak, allAnswers } = stats;
+  nGames = nGames + 1;
+  console.log(nGames);
+  const lastAnswers = get(answers);
+  const correctAnswers = lastAnswers.filter((obj) => obj.correct === true);
+  const streak = correctAnswers.length;
+  const newMaxStreak = Math.max(maxStreak, streak);
+  const updatedAnswers = [...allAnswers, lastAnswers];
+  const updatedStats = {
+    nGames,
+    lastStreak: streak,
+    maxStreak: newMaxStreak,
+    allAnswers: updatedAnswers,
+  };
+  localStorage.setItem("stats", JSON.stringify(updatedStats));
 };

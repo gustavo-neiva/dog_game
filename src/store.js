@@ -1,5 +1,5 @@
 import { get, writable } from "svelte/store";
-import { updateGame } from "./lib/repository";
+import { updateGame, setStats } from "./lib/repository";
 
 export const quiz = writable([]);
 export const answers = writable([]);
@@ -11,7 +11,7 @@ export const loading = writable(false);
 export const xIn = writable(700);
 export const durationIn = writable(600);
 export const durationOut = writable(600);
-export const numberOfQuestions = 12; //max is 12
+export const numberOfQuestions = 2; //max is 12
 export const isPlaying = writable(false);
 
 export const next = () => {
@@ -21,6 +21,9 @@ export const next = () => {
   if (index >= numberOfQuestions) {
     finished.set(true);
     isPlaying.set(false);
+    updateGame();
+    setStats();
+    return;
   }
   updateGame();
 };
