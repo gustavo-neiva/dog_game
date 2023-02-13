@@ -10,6 +10,7 @@
   } from "../store";
   import { newGame } from "../lib/buildQuiz";
   import Button from "./Button.svelte";
+  import Statistics from "./Statistics.svelte";
 
   const reset = () => {
     $quiz = [];
@@ -39,9 +40,9 @@
 <div class="score">
   <h3>
     You got {correct} out of {numberOfQuestions} correct!
-    <br />
-    {funText}
   </h3>
+  <p>{funText}</p>
+  <Statistics />
   <Button text="Reset" on:click={() => reset()} />
 </div>
 

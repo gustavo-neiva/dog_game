@@ -21,7 +21,7 @@ if (localStorage.getItem("stats") === null) {
 
 export let currentGame = JSON.parse(localStorage.getItem("current-game"));
 
-export let stats = JSON.parse(localStorage.getItem("stats"));
+export let stats = () => JSON.parse(localStorage.getItem("stats"));
 
 export const updateGame = () => {
   const game = {
@@ -45,16 +45,16 @@ export const reloadGame = () => {
 };
 
 export const setStats = () => {
-  let { nGames, maxStreak, allAnswers } = stats;
-  nGames = nGames + 1;
-  console.log(nGames);
+  let { nGames, maxStreak, allAnswers } = stats();
+  const numberGames = nGames + 1;
+  console.log(numberGames, nGames);
   const lastAnswers = get(answers);
   const correctAnswers = lastAnswers.filter((obj) => obj.correct === true);
   const streak = correctAnswers.length;
   const newMaxStreak = Math.max(maxStreak, streak);
   const updatedAnswers = [...allAnswers, lastAnswers];
   const updatedStats = {
-    nGames,
+    nGames: numberGames,
     lastStreak: streak,
     maxStreak: newMaxStreak,
     allAnswers: updatedAnswers,

@@ -19,14 +19,14 @@ const preload = async (src) => {
 
 const buildOptions = (correctUrl, imagesUrl) => {
   const allOptions = imagesUrl;
-  shuffle(allOptions);
-  const uniqoptions = [...new Set(allOptions)];
-  const wrongUrls = uniqoptions.filter(
-    (url) => removeBreedFromUrl(url) !== removeBreedFromUrl(correctUrl)
-  );
-  const removeDuplicates = [...new Set(wrongUrls)].splice(0, 3);
-  const wrongOptions = removeDuplicates.map((url) => {
-    return { correct: false, breed: removeBreedFromUrl(url) };
+  const breeds = allOptions.map((url) => removeBreedFromUrl(url));
+  shuffle(breeds);
+  const uniqoptions = [...new Set(breeds)];
+  const wrongUrls = uniqoptions
+    .filter((url) => url !== correctUrl)
+    .splice(0, 3);
+  const wrongOptions = wrongUrls.map((url) => {
+    return { correct: false, breed: url };
   });
   const correctOption = {
     correct: true,
