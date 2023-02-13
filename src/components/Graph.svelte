@@ -1,34 +1,26 @@
 <script>
   import { scaleLinear, scaleBand } from "d3-scale";
   import { max } from "d3";
+  import { graphStreaks, numberOfQuestions } from "src/lib/repository";
 
-  const points = [
-    { year: 1990, birthrate: 16.7 },
-    { year: 1995, birthrate: 14.6 },
-    { year: 2000, birthrate: 14.4 },
-    { year: 2005, birthrate: 14 },
-    { year: 2010, birthrate: 13 },
-    { year: 2015, birthrate: 12.4 },
-  ];
-
-  const yTicks = [1990, 1995, 2000, 2005, 2010, 2015];
-  const xTicks = [0, 5, 10, 15, 20];
-  const padding = { top: 20, right: 15, bottom: 20, left: 25 };
+  const points = graphStreaks();
+  const yTicks = [...Array(numberOfQuestions + 1).keys()];
+  const padding = { top: 20, right: 5, bottom: 20, left: 5 };
 
   let width = 500;
-  let height = 500;
-
+  let height = 600;
+  console.log(points);
   function formatMobile(tick) {
     return "'" + tick.toString().slice(-2);
   }
-
+  const maxValue = max(points.map((d) => d.value));
   $: xScale = scaleLinear()
-    .domain([0, max(points.map((d) => d.birthrate))])
+    .domain([-maxValue * 0.1, maxValue])
     .range([0, width]);
 
   $: yScale = scaleBand()
-    .domain(points.map((d) => d.year))
-    .range([0, height])
+    .domain(points.map((d) => d.number))
+    .range([0, height - padding.top - padding.bottom])
     .paddingInner(0.15);
 
   $: innerWidth = width - (padding.left + padding.right);
@@ -36,7 +28,7 @@
 </script>
 
 <div class="chart" bind:clientWidth={width} bind:clientHeight={height}>
-  <svg>
+  <svg height={350} {innerWidth}>
     <!-- y axis -->
     <!-- <g class="axis y-axis">
       {#each yTicks as tick}
@@ -54,11 +46,11 @@
     </g> -->
 
     <g class="bars">
-      {#each points as point, i}
+      {#each points as point}
         <rect
           x={0}
-          y={yScale(point.year)}
-          width={xScale(point.birthrate)}
+          y={yScale(point.number)}
+          width={xScale(point.value)}
           height={yScale.bandwidth()}
         />
       {/each}
@@ -76,7 +68,6 @@
   svg {
     position: relative;
     width: 100%;
-    height: 30rem;
   }
 
   .bars rect {

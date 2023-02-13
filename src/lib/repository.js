@@ -8,6 +8,12 @@ import {
   answers,
 } from "../store";
 
+export const numberOfQuestions = 12; //max is 12
+
+const defaultStreaks = [...Array(numberOfQuestions + 1).keys()].map((v) => {
+  return { number: v, value: 0 };
+});
+
 if (localStorage.getItem("current-game") === null) {
   localStorage.setItem("current-game", JSON.stringify({ isPlaying: false }));
 }
@@ -15,7 +21,13 @@ if (localStorage.getItem("current-game") === null) {
 if (localStorage.getItem("stats") === null) {
   localStorage.setItem(
     "stats",
-    JSON.stringify({ nGames: 0, maxStreak: 0, lastStreak: 0, allAnswers: [] })
+    JSON.stringify({
+      nGames: 0,
+      maxStreak: 0,
+      lastStreak: 0,
+      allAnswers: [],
+      streaks: defaultStreaks,
+    })
   );
 }
 
@@ -45,7 +57,7 @@ export const reloadGame = () => {
 };
 
 export const setStats = () => {
-  let { nGames, maxStreak, allAnswers } = stats();
+  let { nGames, maxStreak, allAnswers, streaks } = stats();
   const numberGames = nGames + 1;
   console.log(numberGames, nGames);
   const lastAnswers = get(answers);
@@ -53,11 +65,21 @@ export const setStats = () => {
   const streak = correctAnswers.length;
   const newMaxStreak = Math.max(maxStreak, streak);
   const updatedAnswers = [...allAnswers, lastAnswers];
+  const streaksCopy = [...streaks];
+  const newStreaks = streaksCopy.map((p) =>
+    p.number === streak ? { number: p.number, value: p.value + 1 } : p
+  );
   const updatedStats = {
     nGames: numberGames,
     lastStreak: streak,
     maxStreak: newMaxStreak,
     allAnswers: updatedAnswers,
+    streaks: newStreaks,
   };
   localStorage.setItem("stats", JSON.stringify(updatedStats));
+};
+
+export const graphStreaks = () => {
+  const { streaks } = stats();
+  return streaks;
 };

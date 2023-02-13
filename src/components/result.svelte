@@ -1,13 +1,13 @@
 <script>
   import {
     answers,
-    numberOfQuestions,
     quiz,
     finished,
     quizIndex,
     answerIndex,
     loading,
   } from "../store";
+  import { numberOfQuestions } from "../lib/repository";
   import { newGame } from "../lib/buildQuiz";
   import Button from "./Button.svelte";
   import Statistics from "./Statistics.svelte";

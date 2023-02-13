@@ -1,5 +1,5 @@
-import { quiz, numberOfQuestions, loading, isPlaying } from "../store";
-import { updateGame } from "./repository";
+import { quiz, loading, isPlaying } from "../store";
+import { updateGame, numberOfQuestions } from "./repository";
 import { shuffle, unslugify } from "./helpers";
 
 const removeBreedFromUrl = (url) => {

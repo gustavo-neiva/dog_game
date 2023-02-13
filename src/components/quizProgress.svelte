@@ -1,12 +1,6 @@
 <script>
-  import {
-    quizIndex,
-    numberOfQuestions,
-    answers,
-    answerIndex,
-    rowIndex,
-    xIn,
-  } from "../store";
+  import { quizIndex, answers, answerIndex, rowIndex, xIn } from "../store";
+  import { numberOfQuestions } from "../lib/repository";
 
   $: rightAnswer = (row) => {
     if (row <= $answerIndex) {
