@@ -11,15 +11,15 @@
     </div>
     <div class="statistics__group">
       <p class="statistics__value">100</p>
-      <p class="statistics__label">Win %</p>
+      <p class="statistics__label">Correct %</p>
     </div>
     <div class="statistics__group">
       <p class="statistics__value">1</p>
-      <p class="statistics__label">Current Streak</p>
+      <p class="statistics__label">Last Score</p>
     </div>
     <div class="statistics__group">
       <p class="statistics__value">1</p>
-      <p class="statistics__label">Max Streak</p>
+      <p class="statistics__label">Max Score</p>
     </div>
   </div>
   <h2>Answers distribution</h2>
@@ -30,7 +30,7 @@
   h2 {
     font-size: 1.6rem;
     line-height: 3.2rem;
-    margin-top: 0;
+    margin-top: 1rem;
     margin-bottom: 0.5rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;

@@ -11,8 +11,8 @@
   button:link,
   button:visited {
     color: white;
-    border: 0.2rem solid rgb(24, 101, 242);
-    background: rgb(24, 101, 242);
+    border: 0.2rem solid #ff7700;
+    background: #ff7700;
     text-decoration: none;
     font-weight: bold;
     display: inline-block;

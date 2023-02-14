@@ -5,17 +5,16 @@
 
   const points = graphStreaks();
   const yTicks = [...Array(numberOfQuestions + 1).keys()];
+  const xTicks = points.map((d) => d.value);
+  console.log(yTicks);
   const padding = { top: 20, right: 5, bottom: 20, left: 5 };
 
   let width = 500;
   let height = 600;
-  console.log(points);
-  function formatMobile(tick) {
-    return "'" + tick.toString().slice(-2);
-  }
+
   const maxValue = max(points.map((d) => d.value));
   $: xScale = scaleLinear()
-    .domain([-maxValue * 0.1, maxValue])
+    .domain([-maxValue * 0.08, maxValue])
     .range([0, width]);
 
   $: yScale = scaleBand()
@@ -24,35 +23,39 @@
     .paddingInner(0.15);
 
   $: innerWidth = width - (padding.left + padding.right);
-  $: barWidth = innerWidth / yTicks.length;
 </script>
 
 <div class="chart" bind:clientWidth={width} bind:clientHeight={height}>
   <svg height={350} {innerWidth}>
-    <!-- y axis -->
-    <!-- <g class="axis y-axis">
-      {#each yTicks as tick}
-        <g class="tick tick-{tick}" transform="translate(0, {yScale(tick)})">
-          <line x2="100%" />
-        </g>
-      {/each}
-    </g> -->
-
-    <!-- x axis -->
-    <!-- <g class="axis x-axis">
-      {#each points as point, i}
-        <g class="tick" transform="translate({xScale(i)},{height})" />
-      {/each}
-    </g> -->
-
     <g class="bars">
       {#each points as point}
         <rect
-          x={0}
+          x={25}
           y={yScale(point.number)}
           width={xScale(point.value)}
           height={yScale.bandwidth()}
         />
+      {/each}
+    </g>
+    <g class="axis y-axis">
+      {#each yTicks as tick, i}
+        <g
+          class="tick tick-{tick}"
+          transform="translate(0, {yScale(tick) + 20})"
+        >
+          <text x2="100%">{tick}</text>
+        </g>
+      {/each}
+    </g>
+
+    <g class="axis x-axis">
+      {#each xTicks as tick, i}
+        <g
+          class="tick tick-{tick}"
+          transform="translate({xScale(tick) - 10}, {yScale(i) + 20})"
+        >
+          <text x2="100%">{xTicks[i]}</text>
+        </g>
       {/each}
     </g>
   </svg>
@@ -71,8 +74,14 @@
   }
 
   .bars rect {
-    fill: #a11;
+    fill: #e04d01;
     stroke: none;
     opacity: 0.65;
+  }
+
+  text {
+    font-size: 1.6rem;
+    stroke: white;
+    fill: white;
   }
 </style>
