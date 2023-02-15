@@ -2,7 +2,9 @@
   import Graph from "./Graph.svelte";
   import { getStats } from "src/lib/repository";
   const { nGames, lastStreak, maxStreak, average } = getStats();
-  const formatedAverage = (average * 100).toLocaleString("en");
+  const formatedAverage = (average * 100).toLocaleString("en", {
+    maximumFractionDigits: 2,
+  });
 </script>
 
 <div class="statistics-container">

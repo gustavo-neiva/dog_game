@@ -69,7 +69,10 @@ const buildQuiz = async () => {
       updateGame();
     }
   } catch (error) {
-    console.error(error);
+    console.error(
+      `error while loading images or acessing dog's api: ${error}. retrying`
+    );
+    newGame();
   }
 };
 

@@ -26,9 +26,9 @@
   let percentRight = correct / numberOfQuestions;
 
   let funText = "";
-  if (percentRight < 0.2) funText = "My cat would know better";
+  if (percentRight < 0.2) funText = "A cat would know better...";
   if (percentRight >= 0.2 && percentRight < 0.4)
-    funText = "We guess that you don't know much about dogs";
+    funText = "We guess that you don't like dogs that much";
   if (percentRight >= 0.4 && percentRight < 0.6)
     funText = "Breeds are hard, we know";
   if (percentRight >= 0.6 && percentRight < 0.8) funText = "Aren't dogs great?";
@@ -38,10 +38,10 @@
 </script>
 
 <div class="score">
-  <p>
+  <h3>
     You got {correct} out of {numberOfQuestions} correct!
-  </p>
-  <p class="fun-text">{funText}</p>
+  </h3>
+  <p>{funText}</p>
   <Statistics />
   <Button text="Play again" on:click={() => reset()} />
 </div>
@@ -54,10 +54,15 @@
     align-items: center;
   }
 
-  p {
+  h3 {
     text-align: center;
     font-size: 2.8rem;
     line-height: 5.6rem;
-    margin: 2rem;
+  }
+
+  p {
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 3rem;
   }
 </style>
