@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@astrojs/svelte': ^2.0.1
   '@lottiefiles/svelte-lottie-player': ^0.3.0
+  '@zerodevx/svelte-toast': 1.0.0-rc.1
   astro: ^2.0.8
   autoprefixer: ^10.4.13
   d3: ^7.8.2
@@ -19,6 +20,7 @@ specifiers:
 dependencies:
   '@astrojs/svelte': 2.0.1_srabkpdrmffps2vsyx2my6v6uy
   '@lottiefiles/svelte-lottie-player': 0.3.0
+  '@zerodevx/svelte-toast': 1.0.0-rc.1
   astro: 2.0.10
   autoprefixer: 10.4.13_postcss@8.4.21
   d3: 7.8.2
@@ -799,6 +801,10 @@ packages:
 
   /@vscode/l10n/0.0.11:
     resolution: {integrity: sha512-ukOMWnCg1tCvT7WnDfsUKQOFDQGsyR5tNgRpwmqi+5/vzU3ghdDXzvIM4IOPdSb3OeSsBNvmSL8nxIVOqi2WXA==}
+    dev: false
+
+  /@zerodevx/svelte-toast/1.0.0-rc.1:
+    resolution: {integrity: sha512-KEZUWeFg1MLlHVssx94ZWWKDBOlQUznTH7xsfZ3uPSYbD5NMO8jDEUGiDNiJ3aKpwiabGvZgG7NKJLFK0q/KYg==}
     dev: false
 
   /acorn/8.8.2:

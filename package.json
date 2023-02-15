@@ -12,6 +12,7 @@
 	"dependencies": {
 		"@astrojs/svelte": "^2.0.1",
 		"@lottiefiles/svelte-lottie-player": "^0.3.0",
+		"@zerodevx/svelte-toast": "1.0.0-rc.1",
 		"astro": "^2.0.8",
 		"autoprefixer": "^10.4.13",
 		"d3": "^7.8.2",

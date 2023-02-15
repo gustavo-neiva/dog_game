@@ -1,4 +1,5 @@
 <script>
+  import { SvelteToast, toast } from "@zerodevx/svelte-toast";
   import {
     answers,
     quiz,
@@ -13,6 +14,12 @@
   import Button from "./Button.svelte";
   import Statistics from "./Statistics.svelte";
 
+  let theme = {
+    "--toastBackground": "#ff7700",
+    "--toastColor": "white",
+    "--toastBarHeight": 0,
+  };
+
   const reset = () => {
     $quiz = [];
     $answers = [];
@@ -25,7 +32,9 @@
 
   const clipboardText = () => {
     const url = window.location.href;
-    copyTextToClipboard(url);
+    const simpleUrl = url.replace(/(^\w+:|^)\/\//, "");
+    copyTextToClipboard(simpleUrl);
+    toast.push("Copied to ctrl + v", { theme });
   };
 
   let correct = $answers.filter((el) => el.correct === true).length;
@@ -43,6 +52,8 @@
   if (percentRight === 1) funText = "You are a Cynophilist! A true dog lover";
 </script>
 
+<SvelteToast options={{ reversed: true, intro: { y: -198 } }} />
+
 <div class="score">
   <h3>
     You got {correct} out of {numberOfQuestions} correct!
@@ -56,6 +67,13 @@
 </div>
 
 <style>
+  :root {
+    --toastContainerTop: 8rem;
+    --toastContainerRight: auto;
+    --toastContainerBottom: auto;
+    --toastContainerLeft: calc(50vw - 8rem);
+  }
+
   .score {
     font-size: 3rem;
     display: flex;

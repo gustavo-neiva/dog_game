@@ -23,16 +23,16 @@
 </script>
 
 <div id="main">
-  <!-- {#if $finished} -->
-  <Result />
-  <!-- {:else if $loading}
+  {#if $finished}
+    <Result />
+  {:else if $loading}
     <InitialLoading />
   {:else if $isPlaying}
     <div class="quiz" in:fade={{ duration: 1500 }}>
       <QuizProgress />
       <Quiz />
     </div>
-  {/if} -->
+  {/if}
 </div>
 
 <style lang="postcss">
