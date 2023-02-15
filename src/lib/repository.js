@@ -83,3 +83,12 @@ export const graphStreaks = () => {
   const { streaks } = stats();
   return streaks;
 };
+
+export const getStats = () => {
+  const { nGames, lastStreak, maxStreak, allAnswers } = stats();
+  const average =
+    allAnswers
+      .map((a) => a.filter((v) => v.correct === true).length / a.length)
+      .reduce((prev, curr) => prev + curr) / allAnswers.length;
+  return { nGames, lastStreak, maxStreak, average };
+};

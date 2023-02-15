@@ -6,23 +6,22 @@
   const points = graphStreaks();
   const yTicks = [...Array(numberOfQuestions + 1).keys()];
   const xTicks = points.map((d) => d.value);
-  console.log(yTicks);
-  const padding = { top: 20, right: 5, bottom: 20, left: 5 };
+  const padding = { top: 5, right: 5, bottom: 10, left: 15 };
 
   let width = 500;
   let height = 600;
+  const fontSize = 16;
 
   const maxValue = max(points.map((d) => d.value));
+  $: innerWidth = width - (padding.left - padding.right);
   $: xScale = scaleLinear()
     .domain([-maxValue * 0.08, maxValue])
-    .range([0, width]);
+    .range([0, innerWidth - padding.right - padding.left]);
 
   $: yScale = scaleBand()
     .domain(points.map((d) => d.number))
-    .range([0, height - padding.top - padding.bottom])
+    .range([padding.top, height - padding.bottom * 2])
     .paddingInner(0.15);
-
-  $: innerWidth = width - (padding.left + padding.right);
 </script>
 
 <div class="chart" bind:clientWidth={width} bind:clientHeight={height}>
@@ -30,8 +29,9 @@
     <g class="bars">
       {#each points as point}
         <rect
-          x={25}
+          x={padding.left + fontSize / 2}
           y={yScale(point.number)}
+          fill={point.value === 0 ? "black" : "#e04d01"}
           width={xScale(point.value)}
           height={yScale.bandwidth()}
         />
@@ -41,20 +41,26 @@
       {#each yTicks as tick, i}
         <g
           class="tick tick-{tick}"
-          transform="translate(0, {yScale(tick) + 20})"
+          text-anchor="start"
+          transform="translate(0, {yScale(tick) + fontSize})"
         >
-          <text x2="100%">{tick}</text>
+          <text x2="100%" font-size={fontSize}>{tick}</text>
         </g>
       {/each}
     </g>
 
     <g class="axis x-axis">
       {#each xTicks as tick, i}
-        <g
-          class="tick tick-{tick}"
-          transform="translate({xScale(tick) - 10}, {yScale(i) + 20})"
-        >
-          <text x2="100%">{xTicks[i]}</text>
+        <g class="tick tick-{tick}">
+          <text
+            x2="100%"
+            font-size={fontSize * 0.8}
+            font-weight={200}
+            text-anchor="start"
+            transform="translate({xScale(tick) + padding.left / 1.8}, {yScale(
+              i
+            ) + fontSize})">{xTicks[i]}</text
+          >
         </g>
       {/each}
     </g>
@@ -74,13 +80,11 @@
   }
 
   .bars rect {
-    fill: #e04d01;
     stroke: none;
     opacity: 0.65;
   }
 
   text {
-    font-size: 1.6rem;
     stroke: white;
     fill: white;
   }

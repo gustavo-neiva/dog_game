@@ -1,24 +1,29 @@
 <script>
   import Graph from "./Graph.svelte";
+  import { getStats } from "src/lib/repository";
+  const { nGames, lastStreak, maxStreak, average } = getStats();
+  const formatedAverage = (average * 100).toLocaleString("en");
 </script>
 
 <div class="statistics-container">
   <h2>Statistics</h2>
   <div class="statistics">
     <div class="statistics__group">
-      <p class="statistics__value">1</p>
+      <p class="statistics__value">{nGames}</p>
       <p class="statistics__label">Played</p>
     </div>
     <div class="statistics__group">
-      <p class="statistics__value">100</p>
+      <p class="statistics__value">
+        {formatedAverage}
+      </p>
       <p class="statistics__label">Correct %</p>
     </div>
     <div class="statistics__group">
-      <p class="statistics__value">1</p>
+      <p class="statistics__value">{lastStreak}</p>
       <p class="statistics__label">Last Score</p>
     </div>
     <div class="statistics__group">
-      <p class="statistics__value">1</p>
+      <p class="statistics__value">{maxStreak}</p>
       <p class="statistics__label">Max Score</p>
     </div>
   </div>

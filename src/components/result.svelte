@@ -38,12 +38,12 @@
 </script>
 
 <div class="score">
-  <h3>
+  <p>
     You got {correct} out of {numberOfQuestions} correct!
-  </h3>
-  <p>{funText}</p>
+  </p>
+  <p class="fun-text">{funText}</p>
   <Statistics />
-  <Button text="Reset" on:click={() => reset()} />
+  <Button text="Play again" on:click={() => reset()} />
 </div>
 
 <style>
@@ -54,7 +54,7 @@
     align-items: center;
   }
 
-  h3 {
+  p {
     text-align: center;
     font-size: 2.8rem;
     line-height: 5.6rem;
