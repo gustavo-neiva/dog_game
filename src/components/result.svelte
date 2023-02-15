@@ -8,6 +8,7 @@
     loading,
   } from "../store";
   import { numberOfQuestions } from "../lib/repository";
+  import { copyTextToClipboard } from "../lib/helpers";
   import { newGame } from "../lib/buildQuiz";
   import Button from "./Button.svelte";
   import Statistics from "./Statistics.svelte";
@@ -20,6 +21,11 @@
     answerIndex.set(-1);
     finished.set(false);
     newGame();
+  };
+
+  const clipboardText = () => {
+    const url = window.location.href;
+    copyTextToClipboard(url);
   };
 
   let correct = $answers.filter((el) => el.correct === true).length;
@@ -43,7 +49,10 @@
   </h3>
   <p>{funText}</p>
   <Statistics />
-  <Button text="Play again" on:click={() => reset()} />
+  <div class="buttons">
+    <Button text="Play again" on:click={() => reset()} />
+    <Button text="Share" on:click={() => clipboardText()} />
+  </div>
 </div>
 
 <style>
@@ -52,6 +61,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #2a2550;
+    max-width: 72rem;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    padding: 3rem;
+    width: 80%;
   }
 
   h3 {
@@ -64,5 +79,12 @@
     text-align: center;
     font-size: 1.5rem;
     line-height: 3rem;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+    max-width: 60rem;
+    width: 100%;
   }
 </style>

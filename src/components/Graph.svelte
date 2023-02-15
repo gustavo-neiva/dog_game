@@ -57,7 +57,7 @@
             font-size={fontSize * 0.8}
             font-weight={200}
             text-anchor="start"
-            transform="translate({xScale(tick) + padding.left / 1.8}, {yScale(
+            transform="translate({xScale(tick) + padding.left / 1.5}, {yScale(
               i
             ) + fontSize})">{xTicks[i]}</text
           >
