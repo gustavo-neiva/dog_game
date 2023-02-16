@@ -66,7 +66,7 @@
   </div>
 </div>
 
-<style>
+<style lang="postcss">
   :root {
     --toastContainerTop: 8rem;
     --toastContainerRight: auto;
@@ -75,7 +75,6 @@
   }
 
   .score {
-    font-size: 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,14 +82,38 @@
     max-width: 72rem;
     margin: 0 auto;
     border-radius: 0.5rem;
-    padding: 3rem;
     width: 80%;
+
+    @media screen and (max-width: 768px) {
+      font-size: 1rem;
+      padding: 1rem;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      font-size: 2rem;
+      padding: 2rem;
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: 3rem;
+      padding: 3rem;
+    }
   }
 
   h3 {
     text-align: center;
-    font-size: 2.8rem;
-    line-height: 5.6rem;
+
+    @media screen and (max-width: 768px) {
+      font-size: 2.2rem;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      font-size: 2.4rem;
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: 2.8rem;
+    }
   }
 
   p {

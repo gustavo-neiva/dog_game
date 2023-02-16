@@ -8,7 +8,7 @@
 </script>
 
 <div class="statistics-container">
-  <h2>Statistics</h2>
+  <h4>Statistics</h4>
   <div class="statistics">
     <div class="statistics__group">
       <p class="statistics__value">{nGames}</p>
@@ -29,18 +29,35 @@
       <p class="statistics__label">Max Score</p>
     </div>
   </div>
-  <h2>Correct Answers distribution</h2>
+  <h4>Correct Answers distribution</h4>
   <Graph />
 </div>
 
 <style lang="postcss">
-  h2 {
-    font-size: 1.6rem;
-    line-height: 3.2rem;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
+  h4 {
     letter-spacing: 0.05em;
     text-transform: uppercase;
+
+    @media screen and (max-width: 768px) {
+      font-size: 1.2rem;
+      line-height: 2.8rem;
+      margin-top: 0.6rem;
+      margin-bottom: 0.1rem;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      font-size: 1.4rem;
+      line-height: 3rem;
+      margin-top: 0.8rem;
+      margin-bottom: 0.3rem;
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: 1.6rem;
+      line-height: 3.2rem;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
   }
 
   .statistics-container {
@@ -61,7 +78,6 @@
   }
 
   .statistics__value {
-    font-size: 3.4rem;
     font-weight: 400;
     display: flex;
     align-items: center;
@@ -69,16 +85,43 @@
     text-align: center;
     letter-spacing: 0.17rem;
     font-variant-numeric: proportional-nums;
-    line-height: 3.6rem;
+
+    @media screen and (max-width: 768px) {
+      font-size: 2.8rem;
+      line-height: 3rem;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      font-size: 3rem;
+      line-height: 3.2rem;
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: 3.4rem;
+      line-height: 3.6rem;
+    }
   }
 
   .statistics__label {
-    font-size: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    line-height: 1.4rem;
     letter-spacing: 0.1rem;
+
+    @media screen and (max-width: 768px) {
+      font-size: 0.8rem;
+      line-height: 1.2rem;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      font-size: 0.9rem;
+      line-height: 1.2rem;
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: 1rem;
+      line-height: 1.4rem;
+    }
   }
 </style>
