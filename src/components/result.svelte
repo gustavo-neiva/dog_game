@@ -11,8 +11,8 @@
   import { numberOfQuestions } from "../lib/repository";
   import { copyTextToClipboard } from "../lib/helpers";
   import { newGame } from "../lib/buildQuiz";
-  import Button from "./Button.svelte";
-  import Statistics from "./Statistics.svelte";
+  import Button from "@components/Button.svelte";
+  import Statistics from "@components/Statistics.svelte";
 
   let theme = {
     "--toastBackground": "#ff7700",
@@ -34,7 +34,7 @@
     const url = window.location.href;
     const simpleUrl = url.replace(/(^\w+:|^)\/\//, "");
     copyTextToClipboard(simpleUrl);
-    toast.push("Copied to ctrl + v", { theme });
+    toast.push("Copied to ctrl + v!", { theme });
   };
 
   let correct = $answers.filter((el) => el.correct === true).length;

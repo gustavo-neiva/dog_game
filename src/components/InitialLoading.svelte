@@ -1,5 +1,5 @@
 <script>
-  import LottiePlayer from "./LottiePlayer.svelte";
+  import LottiePlayer from "@components/LottiePlayer.svelte";
   $: innerHeight = 0;
   $: innerWidth = 0;
   $: scale = innerWidth / 2;
