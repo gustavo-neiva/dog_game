@@ -1,4 +1,4 @@
-import { quiz, loading, isPlaying } from "../store";
+import { quiz, loading, isPlaying, reset } from "../store";
 import { updateGame, numberOfQuestions } from "./repository";
 import { shuffle, unslugify } from "./helpers";
 
@@ -71,7 +71,7 @@ const buildQuiz = async () => {
     console.error(
       `error while loading images or acessing dog's api: ${error}. retrying`
     );
-    newGame();
+    reset();
   }
 };
 

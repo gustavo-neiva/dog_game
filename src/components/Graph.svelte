@@ -8,17 +8,14 @@
   const points = graphStreaks();
   const yTicks = [...Array(numberOfQuestions + 1).keys()];
   const xTicks = points.map((d) => d.value);
-  const padding = { top: 5, right: 5, bottom: 10, left: 15 };
+  const padding = { top: 5, right: 5, bottom: 5, left: 15 };
 
-  let width = 500;
+  let width = 300;
   $: innerHeight = 200;
 
   const maxValue = max(points.map((d) => d.value));
-  $: innerWidth = width - (padding.left - padding.right);
+  const innerWidth = width - (padding.left - padding.right);
   $: height = innerHeight / 2.5;
-  $: {
-    console.log(height);
-  }
   $: fontSize = height / 20;
   $: xScale = scaleLinear()
     .domain([-maxValue * 0.08, maxValue])
@@ -32,8 +29,8 @@
 
 <svelte:window bind:innerHeight />
 
-<div class="chart" bind:clientWidth={width}>
-  <svg {height} {innerWidth}>
+<div class="chart">
+  <svg {height} {width}>
     <g class="bars">
       {#each points as point}
         <rect
@@ -42,7 +39,7 @@
           fill={point.value === 0 ? "black" : "#e04d01"}
           width={xScale(point.value)}
           height={yScale.bandwidth()}
-          in:horizontalSlide={{ axis: "x", duration: 1000 }}
+          in:horizontalSlide={{ direction: "inline", duration: 1000 }}
         />
       {/each}
     </g>
@@ -66,8 +63,8 @@
             x2="100%"
             font-size={fontSize * 0.9}
             font-weight={200}
-            text-anchor="start"
-            transform="translate({xScale(tick) + padding.left / 2}, {yScale(i) +
+            text-anchor="end"
+            transform="translate({xScale(tick) + padding.left + 2}, {yScale(i) +
               fontSize * 0.9})"
             in:fade={{ duration: 1500 }}
           >
@@ -82,7 +79,7 @@
 <style>
   .chart {
     width: 100%;
-    max-width: 64rem;
+    max-width: 60rem;
     margin: 0 auto;
   }
 

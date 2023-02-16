@@ -9,10 +9,10 @@
     quizIndex,
     answers,
     answerIndex,
-    back,
-    next,
     durationIn,
     quiz,
+    autoNext,
+    timeout,
   } from "../store";
 
   export let index;
@@ -20,7 +20,6 @@
   export let options;
   export let answered;
 
-  let xDown;
   let animationHeight = innerHeight;
   let animate = false;
 
@@ -35,12 +34,6 @@
   if (innerWidth > 760) {
     animationHeight = animationHeight * 1.1;
   }
-
-  const setNext = () => {
-    setTimeout(() => {
-      next();
-    }, 2500);
-  };
 
   const answer = (e) => {
     hasAnswered = true;
@@ -61,71 +54,26 @@
     if (isCorrect) {
       animate = true;
     }
-    setNext();
-  };
-
-  const handleTouchMove = (e) => {
-    if (!xDown) {
-      return;
-    }
-
-    let xUp = e.touches[0].clientX;
-
-    let xDiff = xDown - xUp;
-
-    if (xDiff > 0) {
-      if (hasAnswered) {
-        next();
-      }
-    } else {
-      if ($quizIndex >= 1) {
-        back();
-      }
-    }
-
-    xDown = null;
-  };
-
-  const handleTouchStart = (e) => {
-    const firstTouch = e.touches[0];
-    xDown = firstTouch.clientX;
-  };
-
-  const onKeyDown = (e) => {
-    if ($quizIndex <= $answerIndex && e.keyCode === 39) {
-      next();
-    }
-    if ($quizIndex >= 1 && e.keyCode === 37) {
-      back();
-    }
+    autoNext();
   };
 </script>
 
-<svelte:window
-  bind:innerWidth
-  bind:innerHeight
-  on:keydown|preventDefault={onKeyDown}
-/>
+<svelte:window bind:innerWidth bind:innerHeight />
 
 {#if $quizIndex === index}
   {#if $quizIndex >= 1}
     <div in:fade={{ duration: $durationIn }}>
-      <Arrow direction="left" {index} />
+      <Arrow direction="left" />
     </div>
   {/if}
 
-  {#if hasAnswered}
+  {#if hasAnswered && !$timeout}
     <div in:fade={{ duration: $durationIn }}>
-      <Arrow direction="right" {index} />
+      <Arrow direction="right" />
     </div>
   {/if}
 
-  <div
-    class="question"
-    in:fade={{ duration: $durationIn }}
-    on:touchmove={handleTouchMove}
-    on:touchstart={handleTouchStart}
-  >
+  <div class="question" in:fade={{ duration: $durationIn }}>
     <div class="image">
       <DogImg {image} />
     </div>

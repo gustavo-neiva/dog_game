@@ -1,16 +1,8 @@
 <script>
   import { SvelteToast, toast } from "@zerodevx/svelte-toast";
-  import {
-    answers,
-    quiz,
-    finished,
-    quizIndex,
-    answerIndex,
-    loading,
-  } from "../store";
+  import { answers, reset } from "../store";
   import { numberOfQuestions } from "../lib/repository";
   import { copyTextToClipboard } from "../lib/helpers";
-  import { newGame } from "../lib/buildQuiz";
   import Button from "@components/Button.svelte";
   import Statistics from "@components/Statistics.svelte";
 
@@ -18,16 +10,6 @@
     "--toastBackground": "#ff7700",
     "--toastColor": "white",
     "--toastBarHeight": 0,
-  };
-
-  const reset = () => {
-    $quiz = [];
-    $answers = [];
-    loading.set(true);
-    quizIndex.set(0);
-    answerIndex.set(-1);
-    finished.set(false);
-    newGame();
   };
 
   const clipboardText = () => {

@@ -1,13 +1,9 @@
 <script>
   import { next, back } from "../store";
   export let direction = "right";
-  export let index;
 </script>
 
-<div
-  class="arrow {direction}"
-  on:click={direction == "right" ? () => next(index) : () => back(index)}
-/>
+<div class="arrow {direction}" on:click={direction == "right" ? next : back} />
 
 <style lang="postcss">
   .arrow {
@@ -24,12 +20,12 @@
     z-index: 9999;
 
     &.left {
-      left: 2.4rrrem;
+      left: 2.4rem;
       transform: translate3d(0, -50%, 0) rotate(-135deg);
     }
 
     &.right {
-      right: 2.4rrrem;
+      right: 2rem;
       transform: translate3d(0, -50%, 0) rotate(45deg);
     }
 

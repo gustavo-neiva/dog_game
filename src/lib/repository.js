@@ -59,7 +59,6 @@ export const reloadGame = () => {
 export const setStats = () => {
   let { nGames, maxStreak, allAnswers, streaks } = stats();
   const numberGames = nGames + 1;
-  console.log(numberGames, nGames);
   const lastAnswers = get(answers);
   const correctAnswers = lastAnswers.filter((obj) => obj.correct === true);
   const streak = correctAnswers.length;
