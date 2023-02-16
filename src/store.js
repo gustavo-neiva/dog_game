@@ -9,7 +9,7 @@ export const rowIndex = writable(0);
 export const finished = writable(false);
 export const loading = writable(false);
 export const xIn = writable(700);
-export const durationIn = writable(600);
+export const durationIn = writable(2500);
 export const durationOut = writable(600);
 export const isPlaying = writable(false);
 

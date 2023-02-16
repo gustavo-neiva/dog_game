@@ -1,4 +1,4 @@
-import { cubicOut } from "svelte/easing";
+import { cubicIn } from "svelte/easing";
 
 export function shuffle(array) {
   let currentIndex = array.length,
@@ -71,7 +71,7 @@ export function copyTextToClipboard(text) {
  */
 export function horizontalSlide(
   node,
-  { delay = 0, duration = 400, easing = cubicOut, axis = "x" } = {}
+  { delay = 0, duration = 400, easing = cubicIn, axis = "x" } = {}
 ) {
   const style = getComputedStyle(node);
   const opacity = +style.opacity;

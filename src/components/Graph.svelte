@@ -42,7 +42,7 @@
           fill={point.value === 0 ? "black" : "#e04d01"}
           width={xScale(point.value)}
           height={yScale.bandwidth()}
-          in:horizontalSlide={{ axis: "x", duration: 800 }}
+          in:horizontalSlide={{ axis: "x", duration: 1000 }}
         />
       {/each}
     </g>
@@ -52,7 +52,7 @@
           class="tick tick-{tick}"
           text-anchor="start"
           transform="translate(0, {yScale(tick) + fontSize})"
-          in:fade={{ duration: 1000 }}
+          in:fade={{ duration: 1500 }}
         >
           <text x2="100%" font-size={fontSize}>{tick}</text>
         </g>
@@ -69,7 +69,7 @@
             text-anchor="start"
             transform="translate({xScale(tick) + padding.left / 2}, {yScale(i) +
               fontSize * 0.9})"
-            in:fade={{ duration: 1000 }}
+            in:fade={{ duration: 1500 }}
           >
             {xTicks[i]}
           </text>

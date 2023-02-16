@@ -36,6 +36,12 @@
     animationHeight = animationHeight * 1.1;
   }
 
+  const setNext = () => {
+    setTimeout(() => {
+      next();
+    }, 2500);
+  };
+
   const answer = (e) => {
     hasAnswered = true;
     isCorrect = selectedOption.correct;
@@ -55,6 +61,7 @@
     if (isCorrect) {
       animate = true;
     }
+    setNext();
   };
 
   const handleTouchMove = (e) => {
@@ -83,20 +90,33 @@
     const firstTouch = e.touches[0];
     xDown = firstTouch.clientX;
   };
+
+  const onKeyDown = (e) => {
+    if ($quizIndex <= $answerIndex && e.keyCode === 39) {
+      next();
+    }
+    if ($quizIndex >= 1 && e.keyCode === 37) {
+      back();
+    }
+  };
 </script>
 
-<svelte:window bind:innerWidth bind:innerHeight />
+<svelte:window
+  bind:innerWidth
+  bind:innerHeight
+  on:keydown|preventDefault={onKeyDown}
+/>
 
 {#if $quizIndex === index}
   {#if $quizIndex >= 1}
     <div in:fade={{ duration: $durationIn }}>
-      <Arrow direction="left" />
+      <Arrow direction="left" {index} />
     </div>
   {/if}
 
   {#if hasAnswered}
     <div in:fade={{ duration: $durationIn }}>
-      <Arrow direction="right" />
+      <Arrow direction="right" {index} />
     </div>
   {/if}
 
@@ -176,8 +196,8 @@
 
     @media screen and (max-width: 768px) {
       margin: 0.5rem;
-      height: 25rem;
-      width: 25rem;
+      height: 22rem;
+      width: 22rem;
     }
   }
   .question {
