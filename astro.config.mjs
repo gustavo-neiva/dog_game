@@ -4,7 +4,7 @@ import preprocess from "svelte-preprocess";
 
 export default defineConfig({
   resolve: {
-    alias: [{ find: "@", replacement: "/src/" }],
+    alias: [{ find: "@components", replacement: "/src" }],
   },
   integrations: [
     svelte({
