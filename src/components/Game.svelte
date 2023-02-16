@@ -3,10 +3,10 @@
   import { newGame } from "../lib/buildQuiz";
   import { currentGame, reloadGame } from "../lib/repository";
   import { finished, isPlaying, loading } from "../store";
-  import Result from "@components/Result.svelte";
-  import Quiz from "@components/Quiz.svelte";
-  import InitialLoading from "@components/InitialLoading.svelte";
-  import QuizProgress from "@components/QuizProgress.svelte";
+  import Result from "./Result.svelte";
+  import Quiz from "./Quiz.svelte";
+  import InitialLoading from "./InitialLoading.svelte";
+  import QuizProgress from "./QuizProgress.svelte";
   import { onMount } from "svelte";
 
   const startGame = async () => {
