@@ -22,15 +22,14 @@ const buildOptions = (correctUrl, imagesUrl) => {
   const breeds = allOptions.map((url) => removeBreedFromUrl(url));
   shuffle(breeds);
   const uniqoptions = [...new Set(breeds)];
-  const wrongUrls = uniqoptions
-    .filter((url) => url !== correctUrl)
-    .splice(0, 3);
+  const breed = removeBreedFromUrl(correctUrl);
+  const wrongUrls = uniqoptions.filter((url) => url !== breed).splice(0, 3);
   const wrongOptions = wrongUrls.map((url) => {
     return { correct: false, breed: url };
   });
   const correctOption = {
     correct: true,
-    breed: unslugify(correctUrl.split("/")[4]),
+    breed,
   };
   const orderedOptions = [...wrongOptions, correctOption];
   const options = shuffle(orderedOptions);
