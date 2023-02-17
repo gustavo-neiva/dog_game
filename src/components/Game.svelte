@@ -3,11 +3,12 @@
   import { onMount } from "svelte";
   import { newGame } from "../lib/buildQuiz";
   import { currentGame, reloadGame } from "../lib/repository";
-  import { finished, isPlaying, loading } from "../store";
+  import { loading, showModal } from "../store";
   import Result from "@components/Result.svelte";
   import Quiz from "@components/Quiz.svelte";
   import InitialLoading from "@components/InitialLoading.svelte";
   import QuizProgress from "@components/QuizProgress.svelte";
+  import Modal from "@components/Modal.svelte";
 
   const startGame = async () => {
     if (currentGame.isPlaying) {
@@ -23,11 +24,14 @@
 </script>
 
 <div id="main">
-  {#if $finished}
-    <Result />
-  {:else if $loading}
+  {#if $showModal && !$loading}
+    <Modal on:close={() => showModal.set(false)}>
+      <Result />
+    </Modal>
+  {/if}
+  {#if $loading}
     <InitialLoading />
-  {:else if $isPlaying}
+  {:else}
     <div class="quiz" in:fade={{ duration: 1500 }}>
       <QuizProgress />
       <Quiz />
@@ -46,8 +50,12 @@
       height: 92vh;
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
       height: 80vh;
+    }
+
+    @media screen and (max-width: 768px) {
+      height: 7vh;
     }
   }
 </style>

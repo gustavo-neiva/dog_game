@@ -1,5 +1,5 @@
 <script>
-  import { quizIndex, answers, answerIndex, rowIndex, xIn } from "../store";
+  import { quizIndex, answers, answerIndex, rowIndex } from "../store";
   import { numberOfQuestions } from "../lib/repository";
 
   $: rightAnswer = (row) => {
@@ -11,11 +11,6 @@
 
   function goTo(row) {
     if (row <= $answerIndex) {
-      if (row < $rowIndex) {
-        xIn.update((n) => (n = -Math.abs(n)));
-      } else {
-        xIn.update((n) => (n = Math.abs(n)));
-      }
       rowIndex.set(row);
       quizIndex.update((_) => row);
     }

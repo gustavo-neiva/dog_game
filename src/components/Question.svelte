@@ -142,10 +142,16 @@
       width: 32rem;
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (min-width: 320px) and (max-width: 768px) {
       margin: 0.5rem;
       height: 22rem;
       width: 22rem;
+    }
+
+    @media screen and (max-width: 375px) {
+      margin: 1rem 0.5rem 0.5rem 0.5rem;
+      height: 20rem;
+      width: 20rem;
     }
   }
   .question {

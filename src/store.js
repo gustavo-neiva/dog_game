@@ -1,5 +1,5 @@
 import { get, writable } from "svelte/store";
-import { updateGame, setStats, numberOfQuestions } from "./lib/repository";
+import { updateGame, numberOfQuestions } from "./lib/repository";
 import { newGame } from "./lib/buildQuiz";
 
 export const quiz = writable([]);
@@ -9,11 +9,11 @@ export const answerIndex = writable(-1);
 export const rowIndex = writable(0);
 export const finished = writable(false);
 export const loading = writable(false);
-export const xIn = writable(700);
 export const durationIn = writable(600);
 export const durationOut = writable(600);
 export const isPlaying = writable(false);
 export const timeout = writable(false);
+export const showModal = writable(false);
 
 export let autoNext = () => {
   timeout.set(true);
@@ -25,22 +25,19 @@ export const next = () => {
 };
 
 const goToNext = () => {
-  xIn.update((n) => (n = Math.abs(n)));
-  quizIndex.update((n) => n + 1);
   const index = get(quizIndex);
-  if (index >= numberOfQuestions) {
+  if (index + 1 == numberOfQuestions) {
     finished.set(true);
     isPlaying.set(false);
-    updateGame();
-    setStats();
-    return;
+    showModal.set(true);
+  } else {
+    quizIndex.update((n) => n + 1);
   }
   updateGame();
   timeout.set(false);
 };
 
 export const back = () => {
-  xIn.update((n) => (n = -Math.abs(n)));
   quizIndex.update((n) => n - 1);
   updateGame();
 };
@@ -52,5 +49,6 @@ export const reset = () => {
   quizIndex.set(0);
   answerIndex.set(-1);
   finished.set(false);
+  showModal.set(false);
   newGame();
 };

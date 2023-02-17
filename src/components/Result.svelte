@@ -12,7 +12,9 @@
     "--toastBarHeight": 0,
   };
 
-  const clipboardText = () => {
+  const clipboardText = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
     const url = window.location.href;
     const simpleUrl = url.replace(/(^\w+:|^)\/\//, "");
     copyTextToClipboard(simpleUrl);
@@ -44,7 +46,7 @@
   <Statistics />
   <div class="buttons">
     <Button text="Play again" on:click={() => reset()} />
-    <Button text="Share" on:click={() => clipboardText()} />
+    <Button text="Share" on:click={(e) => clipboardText(e)} />
   </div>
 </div>
 
@@ -64,7 +66,7 @@
     max-width: 72rem;
     margin: 0 auto;
     border-radius: 0.5rem;
-    width: 80%;
+    width: 85%;
 
     @media screen and (max-width: 768px) {
       font-size: 1rem;

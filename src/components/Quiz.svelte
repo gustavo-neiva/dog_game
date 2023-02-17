@@ -23,7 +23,6 @@
     let xDiff = xDown - xUp;
 
     if (xDiff > 0) {
-      console.log($quizIndex, $answerIndex, $timeout);
       if ($quizIndex <= $answerIndex && !$timeout) {
         next();
       }

@@ -45,6 +45,7 @@ export const updateGame = () => {
     answers: get(answers),
   };
   localStorage.setItem("current-game", JSON.stringify(game));
+  setStats();
 };
 
 export const reloadGame = () => {
@@ -87,6 +88,7 @@ export const getStats = () => {
   const { nGames, lastStreak, maxStreak, allAnswers } = stats();
   const average =
     allAnswers
+      .filter((e) => e.length)
       .map((a) => a.filter((v) => v.correct === true).length / a.length)
       .reduce((prev, curr) => prev + curr) / allAnswers.length;
   return { nGames, lastStreak, maxStreak, average };

@@ -1,9 +1,22 @@
+<script>
+  import { showModal } from "../store";
+</script>
+
 <header>
-  <!-- <div class="menu-left">menu left</div> -->
+  <div class="menu-left">
+    <button id="help"> ? </button>
+  </div>
   <div class="title">
     <h1>Canine Cognition</h1>
   </div>
-  <!-- <div class="menu-right">menu right</div> -->
+  <div class="menu-right">
+    <button on:click={() => showModal.set(true)}>
+      <img
+        src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTI4IDEyOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI3IDYzLjVDMjcgNTkuMzU3OSAzMC4zNTc5IDU2IDM0LjUgNTZWNTZDMzguNjQyMSA1NiA0MiA1OS4zNTc5IDQyIDYzLjVWMTAySDI3VjYzLjVaIiBmaWxsPSIjQjdBRUI0Ii8+CjxwYXRoIGQ9Ik00NyAzMy41QzQ3IDI5LjM1NzkgNTAuMzU3OSAyNiA1NC41IDI2VjI2QzU4LjY0MjEgMjYgNjIgMjkuMzU3OSA2MiAzMy41VjEwMkg0N1YzMy41WiIgZmlsbD0iI0I3QUVCNCIvPgo8cGF0aCBkPSJNNjcgNTAuNUM2NyA0Ni4zNTc5IDcwLjM1NzkgNDMgNzQuNSA0M1Y0M0M3OC42NDIxIDQzIDgyIDQ2LjM1NzkgODIgNTAuNVYxMDJINjdWNTAuNVoiIGZpbGw9IiNCN0FFQjQiLz4KPHBhdGggZD0iTTg3IDczLjVDODcgNjkuMzU3OSA5MC4zNTc5IDY2IDk0LjUgNjZWNjZDOTguNjQyMSA2NiAxMDIgNjkuMzU3OSAxMDIgNzMuNVYxMDJIODdWNzMuNVoiIGZpbGw9IiNCN0FFQjQiLz4KPC9zdmc+Cg=="
+        alt="Stats icon"
+      />
+    </button>
+  </div>
 </header>
 
 <style lang="postcss">
@@ -51,5 +64,33 @@
   .menu-right {
     display: flex;
     justify-content: flex-end;
+  }
+
+  button {
+    pointer-events: all;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #b7aeb4;
+    border-radius: 20%;
+    width: 3rem;
+    height: 3rem;
+    margin: 0 0.25vh;
+    transition: transform 0.5s ease-in-out;
+    z-index: 10;
+  }
+
+  img {
+    background-color: #251d3a;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 20%;
+  }
+
+  #help {
+    background-color: #251d3a;
+    color: #b7aeb4;
+    font-size: 2rem;
   }
 </style>
