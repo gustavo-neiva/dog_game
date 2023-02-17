@@ -1,16 +1,16 @@
 <script>
-  import { showModal } from "../store";
+  import { showStats, showInfo } from "../store";
 </script>
 
 <header>
   <div class="menu-left">
-    <button id="help"> ? </button>
+    <button id="help" on:click={() => showInfo.set(true)}> ? </button>
   </div>
   <div class="title">
     <h1>Canine Cognition</h1>
   </div>
   <div class="menu-right">
-    <button on:click={() => showModal.set(true)}>
+    <button on:click={() => showStats.set(true)}>
       <img
         src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTI4IDEyOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI3IDYzLjVDMjcgNTkuMzU3OSAzMC4zNTc5IDU2IDM0LjUgNTZWNTZDMzguNjQyMSA1NiA0MiA1OS4zNTc5IDQyIDYzLjVWMTAySDI3VjYzLjVaIiBmaWxsPSIjQjdBRUI0Ii8+CjxwYXRoIGQ9Ik00NyAzMy41QzQ3IDI5LjM1NzkgNTAuMzU3OSAyNiA1NC41IDI2VjI2QzU4LjY0MjEgMjYgNjIgMjkuMzU3OSA2MiAzMy41VjEwMkg0N1YzMy41WiIgZmlsbD0iI0I3QUVCNCIvPgo8cGF0aCBkPSJNNjcgNTAuNUM2NyA0Ni4zNTc5IDcwLjM1NzkgNDMgNzQuNSA0M1Y0M0M3OC42NDIxIDQzIDgyIDQ2LjM1NzkgODIgNTAuNVYxMDJINjdWNTAuNVoiIGZpbGw9IiNCN0FFQjQiLz4KPHBhdGggZD0iTTg3IDczLjVDODcgNjkuMzU3OSA5MC4zNTc5IDY2IDk0LjUgNjZWNjZDOTguNjQyMSA2NiAxMDIgNjkuMzU3OSAxMDIgNzMuNVYxMDJIODdWNzMuNVoiIGZpbGw9IiNCN0FFQjQiLz4KPC9zdmc+Cg=="
         alt="Stats icon"
@@ -78,7 +78,6 @@
     height: 3rem;
     margin: 0 0.25vh;
     transition: transform 0.5s ease-in-out;
-    z-index: 10;
   }
 
   img {

@@ -6,7 +6,7 @@
     if (row <= $answerIndex) {
       return $answers[row].correct ? "right" : "wrong";
     }
-    ("");
+    return "";
   };
 
   function goTo(row) {

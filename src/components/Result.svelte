@@ -1,6 +1,6 @@
 <script>
   import { SvelteToast, toast } from "@zerodevx/svelte-toast";
-  import { answers, reset } from "../store";
+  import { answers, reset, finished } from "../store";
   import { numberOfQuestions } from "../lib/repository";
   import { copyTextToClipboard } from "../lib/helpers";
   import Button from "@components/Button.svelte";
@@ -39,13 +39,17 @@
 <SvelteToast options={{ reversed: true, intro: { y: -198 } }} />
 
 <div class="score">
-  <h3>
-    You got {correct} out of {numberOfQuestions} correct!
-  </h3>
-  <p>{funText}</p>
+  {#if $finished}
+    <h3>
+      You got {correct} out of {numberOfQuestions} correct!
+    </h3>
+    <p>{funText}</p>
+  {/if}
   <Statistics />
   <div class="buttons">
-    <Button text="Play again" on:click={() => reset()} />
+    {#if $finished}
+      <Button text="Play again" on:click={() => reset()} />
+    {/if}
     <Button text="Share" on:click={(e) => clipboardText(e)} />
   </div>
 </div>

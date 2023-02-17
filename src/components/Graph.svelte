@@ -13,7 +13,7 @@
   let width = 300;
   $: innerHeight = 200;
 
-  const maxValue = max(points.map((d) => d.value));
+  const maxValue = max(points.map((d) => d.value)) || 1;
   const innerWidth = width - (padding.left - padding.right);
   $: height = innerHeight / 2.5;
   $: fontSize = height / 20;
@@ -64,7 +64,7 @@
             font-size={fontSize * 0.9}
             font-weight={200}
             text-anchor="end"
-            transform="translate({xScale(tick) + padding.left + 2}, {yScale(i) +
+            transform="translate({xScale(tick) + padding.left}, {yScale(i) +
               fontSize * 0.9})"
             in:fade={{ duration: 1500 }}
           >

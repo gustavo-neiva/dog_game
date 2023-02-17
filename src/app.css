@@ -12,18 +12,19 @@ html {
   background-color: #251d3a;
   height: 100%;
   margin: 0 auto;
-  overflow: hidden;
   width: 100%;
 }
 
 body {
   box-sizing: border-box;
   font-weight: 400;
-  line-height: 1.7;
+  line-height: 1.5;
   color: #fafaff;
   flex-direction: column;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
+  overflow: hidden;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 a {

@@ -29,7 +29,7 @@
       <p class="statistics__label">Max Score</p>
     </div>
   </div>
-  <h4>Correct Answers distribution</h4>
+  <h4>Score distribution</h4>
   <Graph />
 </div>
 

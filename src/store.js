@@ -1,5 +1,5 @@
 import { get, writable } from "svelte/store";
-import { updateGame, numberOfQuestions } from "./lib/repository";
+import { updateGame, numberOfQuestions, setStats } from "./lib/repository";
 import { newGame } from "./lib/buildQuiz";
 
 export const quiz = writable([]);
@@ -13,7 +13,8 @@ export const durationIn = writable(600);
 export const durationOut = writable(600);
 export const isPlaying = writable(false);
 export const timeout = writable(false);
-export const showModal = writable(false);
+export const showStats = writable(false);
+export const showInfo = writable(false);
 
 export let autoNext = () => {
   timeout.set(true);
@@ -27,9 +28,10 @@ export const next = () => {
 const goToNext = () => {
   const index = get(quizIndex);
   if (index + 1 == numberOfQuestions) {
+    setStats();
     finished.set(true);
     isPlaying.set(false);
-    showModal.set(true);
+    showStats.set(true);
   } else {
     quizIndex.update((n) => n + 1);
   }
@@ -49,6 +51,7 @@ export const reset = () => {
   quizIndex.set(0);
   answerIndex.set(-1);
   finished.set(false);
-  showModal.set(false);
+  showStats.set(false);
+  showInfo.set(false);
   newGame();
 };

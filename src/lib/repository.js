@@ -18,15 +18,18 @@ if (localStorage.getItem("current-game") === null) {
   localStorage.setItem("current-game", JSON.stringify({ isPlaying: false }));
 }
 
-if (localStorage.getItem("stats") === null) {
+if (
+  localStorage.getItem("stats") === null ||
+  localStorage.getItem("stats").allAnswers !== 1
+) {
   localStorage.setItem(
     "stats",
     JSON.stringify({
       nGames: 0,
       maxStreak: 0,
       lastStreak: 0,
-      allAnswers: [],
       streaks: defaultStreaks,
+      scores: [],
     })
   );
 }
@@ -45,7 +48,6 @@ export const updateGame = () => {
     answers: get(answers),
   };
   localStorage.setItem("current-game", JSON.stringify(game));
-  setStats();
 };
 
 export const reloadGame = () => {
@@ -58,23 +60,24 @@ export const reloadGame = () => {
 };
 
 export const setStats = () => {
-  let { nGames, maxStreak, allAnswers, streaks } = stats();
+  let { nGames, maxStreak, streaks, scores } = stats();
   const numberGames = nGames + 1;
   const lastAnswers = get(answers);
   const correctAnswers = lastAnswers.filter((obj) => obj.correct === true);
   const streak = correctAnswers.length;
   const newMaxStreak = Math.max(maxStreak, streak);
-  const updatedAnswers = [...allAnswers, lastAnswers];
   const streaksCopy = [...streaks];
   const newStreaks = streaksCopy.map((p) =>
     p.number === streak ? { number: p.number, value: p.value + 1 } : p
   );
+  const lastScore = streak / numberOfQuestions;
+  const updatedScores = [...scores, lastScore];
   const updatedStats = {
     nGames: numberGames,
     lastStreak: streak,
     maxStreak: newMaxStreak,
-    allAnswers: updatedAnswers,
     streaks: newStreaks,
+    scores: updatedScores,
   };
   localStorage.setItem("stats", JSON.stringify(updatedStats));
 };
@@ -85,11 +88,10 @@ export const graphStreaks = () => {
 };
 
 export const getStats = () => {
-  const { nGames, lastStreak, maxStreak, allAnswers } = stats();
-  const average =
-    allAnswers
-      .filter((e) => e.length)
-      .map((a) => a.filter((v) => v.correct === true).length / a.length)
-      .reduce((prev, curr) => prev + curr) / allAnswers.length;
+  const { nGames, lastStreak, maxStreak, scores } = stats();
+  let average = 0;
+  if (scores.length >= 1) {
+    average = scores.reduce((prev, curr) => prev + curr) / scores.length;
+  }
   return { nGames, lastStreak, maxStreak, average };
 };
