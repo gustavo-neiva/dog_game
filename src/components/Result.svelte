@@ -18,7 +18,7 @@
     const url = window.location.href;
     const simpleUrl = url.replace(/(^\w+:|^)\/\//, "");
     copyTextToClipboard(simpleUrl);
-    toast.push("Copied to ctrl + v!", { theme });
+    toast.push("Copied to ctrl + v!", { theme, duration: 1500 });
   };
 
   let correct = $answers.filter((el) => el.correct === true).length;
@@ -36,7 +36,9 @@
   if (percentRight === 1) funText = "You are a Cynophilist! A true dog lover";
 </script>
 
-<SvelteToast options={{ reversed: true, intro: { y: -198 } }} />
+<div class="toast">
+  <SvelteToast options={{ reversed: true, intro: { y: -198 } }} />
+</div>
 
 <div class="score">
   {#if $finished}
@@ -59,7 +61,7 @@
     --toastContainerTop: 8rem;
     --toastContainerRight: auto;
     --toastContainerBottom: auto;
-    --toastContainerLeft: calc(50vw - 8rem);
+    --toastContainerLeft: calc(50% - 8rem);
   }
 
   .score {
@@ -115,5 +117,9 @@
     justify-content: space-around;
     max-width: 60rem;
     width: 100%;
+  }
+
+  .toast {
+    z-index: 9999;
   }
 </style>
