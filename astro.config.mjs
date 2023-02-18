@@ -3,6 +3,7 @@ import svelte from "@astrojs/svelte";
 import preprocess from "svelte-preprocess";
 
 export default defineConfig({
+  base: "/canine-cognition",
   resolve: {
     alias: [{ find: "@components", replacement: "/src" }],
   },
