@@ -4,7 +4,6 @@ import preprocess from "svelte-preprocess";
 
 export default defineConfig({
   site: "https://www.neiva.dev/canine-cognition",
-  base: "/canine-cognition",
   resolve: {
     alias: [{ find: "@components", replacement: "/src" }],
   },

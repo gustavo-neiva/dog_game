@@ -16,7 +16,11 @@
 <div class="loading">
   <p>Woofing Up Our Quiz!</p>
   <div class="animation">
-    <LottiePlayer path={"./dog-walking.json"} height={scale} width={scale} />
+    <LottiePlayer
+      path={"./canine-cognition/dog-walking.json"}
+      height={scale}
+      width={scale}
+    />
   </div>
 </div>
 

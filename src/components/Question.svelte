@@ -98,7 +98,7 @@
   {#if hasAnswered && isCorrect && animate}
     <div class="animation" style="top: {positionY}px;">
       <LottiePlayer
-        path={"./correct.json"}
+        path={"./canine-cognition/correct.json"}
         height={animationHeight}
         width={innerWidth}
         loop={false}
