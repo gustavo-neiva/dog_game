@@ -9,7 +9,7 @@
 
 :root {
   --inset: env(safe-area-inset-bottom);
-  --max-size: 720px;
+  --max-size: 900px;
   --kbd-height: min(100em/2.15,25vh);
 }
 
@@ -30,7 +30,7 @@ body {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   overflow: hidden;
-  padding-bottom: env(--inset);
+  padding-bottom: var(--inset);
 }
 
 a {
