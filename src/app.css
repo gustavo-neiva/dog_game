@@ -7,8 +7,14 @@
   box-sizing: inherit;
 }
 
+:root {
+  --inset: env(safe-area-inset-bottom);
+  --max-size: 720px;
+  --kbd-height: min(100em/2.15,25vh);
+}
+
 html {
-  font-size: 62.5%;
+  font-size: min(var(--max-size)/100,100vh/100);
   background-color: #251d3a;
   height: 100%;
   margin: 0 auto;
@@ -24,7 +30,7 @@ body {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   overflow: hidden;
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: env(--inset);
 }
 
 a {

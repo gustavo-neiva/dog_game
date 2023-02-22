@@ -98,7 +98,7 @@
   {#if hasAnswered && isCorrect && animate}
     <div class="animation" style="top: {positionY}px;">
       <LottiePlayer
-        path={"./canine-cognition/correct.json"}
+        path={"https://res.cloudinary.com/dohfsgcbx/raw/upload/v1677106653/correct_vb2r3r.json"}
         height={animationHeight}
         width={innerWidth}
         loop={false}
@@ -112,45 +112,18 @@
   h3 {
     text-align: center;
     color: darkgray;
-
-    @media screen and (min-width: 1024px) {
-      font-size: 3.6rem;
-      margin: 0.5rem;
-    }
-
-    @media screen and (min-width: 768px) and (max-width: 1024px) {
-      font-size: 3.4rem;
-      margin: 0.4rem;
-    }
-
-    @media screen and (max-width: 768px) {
-      font-size: 2.6rem;
-      margin: 0.3rem;
-    }
+    font-size: 3.6em;
+    margin: 0.5em;
   }
 
   .image {
     margin: 0 auto;
     display: block;
-
-    @media screen and (min-width: 1024px) {
-      margin: 1.5rem;
-      height: 35rem;
-      width: 35rem;
-    }
-
-    @media screen and (min-width: 768px) and (max-width: 1024px) {
-      margin: 1rem;
-      height: 32rem;
-      width: 32rem;
-    }
-
-    @media screen and (max-width: 768px) {
-      margin: 1rem 0 0 0.5rem;
-      height: 26rem;
-      width: 26rem;
-    }
+    margin: 1.5em;
+    height: 40em;
+    width: 40em;
   }
+
   .question {
     display: flex;
     flex-direction: column;

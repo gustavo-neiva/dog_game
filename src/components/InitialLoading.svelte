@@ -17,7 +17,7 @@
   <p>Woofing Up Our Quiz!</p>
   <div class="animation">
     <LottiePlayer
-      path={"./canine-cognition/dog-walking.json"}
+      path={"https://res.cloudinary.com/dohfsgcbx/raw/upload/v1677106654/dog-walking_ewfklr.json"}
       height={scale}
       width={scale}
     />
