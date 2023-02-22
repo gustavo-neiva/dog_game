@@ -120,8 +120,9 @@
     margin: 0 auto;
     display: block;
     margin: 1.5em;
-    height: 40em;
-    width: 40em;
+    height: 30em;
+    width: auto;
+    max-width: 40em;
   }
 
   .question {
