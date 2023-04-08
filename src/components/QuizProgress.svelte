@@ -34,11 +34,11 @@
   .progress-container {
     left: 0;
     width: 100%;
-    height: 0.82rem;
+    height: 0.8em;
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 0.1rem 0;
+    margin: 0.1em 0;
   }
 
   .steps {
@@ -52,10 +52,10 @@
   }
 
   .step {
-    border-radius: 0.375rem;
+    border-radius: 0.375em;
     width: 100%;
     height: 100%;
-    margin: 0 0.125rem;
+    margin: 0 0.125em;
     background-color: rgba(244, 245, 249, 0.4);
   }
 

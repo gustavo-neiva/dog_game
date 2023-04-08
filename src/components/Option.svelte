@@ -21,36 +21,18 @@
     position: relative;
     cursor: pointer;
     background-color: #fafaff;
-    border-radius: 3.3rem;
+    border-radius: 1em;
     transition: all 0.2s ease-in-out;
-    padding: 0.675rem 0;
+    padding: 0.3em 0;
     color: #37383a;
     width: 80%;
-    max-width: 60rem;
+    max-width: 27em;
     height: auto;
-
-    @media (max-width: 768px) {
-      &:last-child {
-        margin-bottom: 3rem;
-      }
-    }
-    @media (min-width: 1024px) {
-      font-size: 2.8rem;
-      margin: 1.2rem 0;
-    }
-
-    @media (min-width: 768px) and (max-width: 1024px) {
-      font-size: 2.6rem;
-      margin: 1rem 0;
-    }
-
-    @media (max-width: 768px) {
-      margin: 0.5rem 0;
-      font-size: 2rem;
-    }
+    font-size: 2.8em;
+    margin: 0.5em 0;
 
     &:last-child {
-      margin-bottom: 3.3rem;
+      margin-bottom: 3em;
     }
 
     &:hover {
