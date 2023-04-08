@@ -18,10 +18,7 @@ if (localStorage.getItem("current-game") === null) {
   localStorage.setItem("current-game", JSON.stringify({ isPlaying: false }));
 }
 
-if (
-  localStorage.getItem("stats") === null ||
-  localStorage.getItem("stats").allAnswers !== 1
-) {
+if (localStorage.getItem("stats") === null) {
   localStorage.setItem(
     "stats",
     JSON.stringify({

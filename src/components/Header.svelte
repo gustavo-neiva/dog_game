@@ -7,7 +7,7 @@
     <button id="help" on:click={() => showInfo.set(true)}> ? </button>
   </div>
   <div class="title">
-    <h1>Canine Cognition</h1>
+    <h1>Bark Quiz</h1>
   </div>
   <div class="menu-right">
     <button on:click={() => showStats.set(true)}>

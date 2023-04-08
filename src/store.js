@@ -27,6 +27,15 @@ export const next = () => {
 
 const goToNext = () => {
   const index = get(quizIndex);
+  if (get(isPlaying) == false) {
+    if (index + 1 == numberOfQuestions) {
+      showStats.set(true);
+      return;
+    } else {
+      quizIndex.update((n) => n + 1);
+      return;
+    }
+  }
   if (index + 1 == numberOfQuestions) {
     setStats();
     finished.set(true);
