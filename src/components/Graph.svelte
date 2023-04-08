@@ -64,6 +64,7 @@
             font-size={fontSize * 0.9}
             font-weight={200}
             text-anchor="end"
+            x={innerHeight > 720 ? 4 : 0}
             transform="translate({xScale(tick) + padding.left}, {yScale(i) +
               fontSize * 0.9})"
             in:fade={{ duration: 1500 }}

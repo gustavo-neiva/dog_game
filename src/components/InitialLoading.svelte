@@ -26,6 +26,8 @@
 
 <style lang="postcss">
   .animation {
+    height: 70em;
+    width: 70em;
     display: flex;
     margin: 0 auto;
     justify-content: center;

@@ -1,19 +1,27 @@
 ---
-	import Header from '@components/Header.svelte';
-	import Game from '@components/Game.svelte';
-	import '../app.css';
+import Header from "@components/Header.svelte";
+import Game from "@components/Game.svelte";
+import "../app.css";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<Header client:load/>
-		<Game client:only/>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body class="game">
+    <Header client:load />
+    <Game client:only />
+  </body>
 </html>
+
+<style>
+  .game {
+    display: flex;
+    justify-content: flex-start;
+    height: 100vh;
+  }
+</style>

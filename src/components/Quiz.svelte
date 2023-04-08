@@ -43,8 +43,18 @@
 
 <svelte:window on:keydown|preventDefault={onKeyDown} />
 
-<div on:touchmove={handleTouchMove} on:touchstart={handleTouchStart}>
+<div
+  class="quiz"
+  on:touchmove={handleTouchMove}
+  on:touchstart={handleTouchStart}
+>
   {#each $quiz as question}
     <Question {...question} />
   {/each}
 </div>
+
+<style>
+  .quiz {
+    margin-top: 2em;
+  }
+</style>

@@ -38,7 +38,7 @@
   {#if $loading}
     <InitialLoading />
   {:else}
-    <div class="quiz" in:fade={{ duration: 1500 }}>
+    <div class="game" in:fade={{ duration: 1500 }}>
       <QuizProgress />
       <Quiz />
     </div>
@@ -49,5 +49,6 @@
   #main {
     text-align: center;
     padding-top: 0.5rem;
+    height: 100%;
   }
 </style>
