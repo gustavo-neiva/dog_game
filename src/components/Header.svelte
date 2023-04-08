@@ -76,14 +76,14 @@
     border-radius: 20%;
     width: 3rem;
     height: 3rem;
-    margin: 0 0.25vh;
     transition: transform 0.5s ease-in-out;
   }
 
   img {
     background-color: #251d3a;
-    width: 2.8rem;
-    height: 2.8rem;
+    width: 3rem;
+    height: 3rem;
+    border: 2px solid #b7aeb4;
     border-radius: 20%;
   }
 
