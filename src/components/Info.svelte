@@ -4,12 +4,12 @@
 <div class="info">
   <div class="content">
     <p>
-      This quiz game consists of 12 questions with a picture of a dog and four
-      options of breed names.
+      This quiz game consists of 12 questions, each featuring a picture of a dog
+      and four options for breed names
     </p>
-    <p>Click on the breed that you think is the correct one.</p>
+    <p>Click on the breed that you think is correct.</p>
     <p>
-      All pictures and dog's breeds are fetched from <a
+      All pictures and dog breeds are fetched from <a
         href="https://dog.ceo/dog-api/"
         target="_blank">DogAPI</a
       >
