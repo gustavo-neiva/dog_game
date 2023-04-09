@@ -3,7 +3,11 @@ import { updateGame, numberOfQuestions } from "./repository";
 import { shuffle, unslugify } from "./helpers";
 
 const removeBreedFromUrl = (url) => {
-  return unslugify(url.split("/")[4]);
+  const breed = unslugify(url.split("/")[4]);
+  const names = breed.split(" ");
+  if (names.length <= 1) return breed;
+  const reorderedNames = names.reverse();
+  return reorderedNames.join(" ");
 };
 
 const preload = async (src) => {
