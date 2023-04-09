@@ -1,46 +1,25 @@
-# Astro Starter Kit: Minimal
+# Bark Quiz: quiz Game made with AstroJS + Svelte
 
-```
-npm create astro@latest -- --template minimal
-```
+This is a simple quiz game made with Astro and Svelte. The game consists of multiple-choice questions and the player can select the answer they think is correct. The game will then indicate if the answer is correct or incorrect and display the next question.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
+You can play a live version of the game at [https://barkquiz.com/](https://barkquiz.com/).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+# Installation
 
-## 🚀 Project Structure
+1. Clone the repository.
+2. Install the dependencies by running `pnpm install`.
+3. Run `pnpm dev --host` to start the development server.
 
-Inside of your Astro project, you'll see the following folders and files:
+# Usage
 
-```
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+To start the game, simply navigate to the local development server URL in your browser.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+The game consists of a series of questions with multiple-choice answers. Select the answer you think is correct and the game will indicate if the answer is correct or incorrect. You can then proceed to the next question.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+# Contributing
 
-Any static assets, like images, can be placed in the `public/` directory.
+Contributions are always welcome! If you would like to contribute, please fork the repository and create a pull request.
 
-## 🧞 Commands
+# License
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `npm install`          | Installs dependencies                            |
-| `npm run dev`          | Starts local dev server at `localhost:3000`      |
-| `npm run build`        | Build your production site to `./dist/`          |
-| `npm run preview`      | Preview your build locally, before deploying     |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+This project is licensed under the [MIT license](https://opensource.org/license/mit/).
