@@ -98,7 +98,7 @@
   {#if hasAnswered && isCorrect && animate}
     <div class="animation" style="top: {positionY}px;">
       <LottiePlayer
-        path={"https://res.cloudinary.com/dohfsgcbx/raw/upload/v1677106653/correct_vb2r3r.json"}
+        path={"https://res.cloudinary.com/dohfsgcbx/raw/upload/v1717994260/correct_sljjby.json"}
         height={animationHeight}
         width={innerWidth}
         loop={false}
